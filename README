@@ -1,0 +1,3 @@
+My dotfiles and configs for a linux environment. Needs rake to install. 
+
+Run "rake -T" to see tasks and "rake" to install.
