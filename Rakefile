@@ -1,22 +1,20 @@
 require 'rake/testtask'
-require 'rake/lib/section'
 require 'find'
+require 'rake/lib/group'
 
-dotfiles = []
-Find.find('home') { |f| dotfiles << File.expand_path(f) if File.file?(f) }
-sections = Section.create_from_files(dotfiles)
+groups = Dir.glob("configs/*").collect { |f| DotFiles::Group.new(f) if File.directory?(f) }
 
 namespace :install do
-  sections.each do |section|
-    desc "install configs for #{section.name}"
-    task section.name do 
-      section.install
+  groups.each do |group|
+    desc "install configs for #{group.name}"
+    task group.name do 
+      group.install ENV['HOME']
     end
   end
 end
 
 desc "install all dotfiles"
-task :install => sections.collect {|s| "install:#{s.name}"}
+task :install => groups.collect {|g| "install:#{g.name}"}
 task :default => :install
 
 desc 'run tests against this rake script'
