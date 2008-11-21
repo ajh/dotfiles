@@ -33,3 +33,5 @@ colorscheme vibrantink
 set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
 
 ""NERD tree plugin
+map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+
