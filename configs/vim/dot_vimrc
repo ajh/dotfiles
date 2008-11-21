@@ -36,3 +36,14 @@ colorscheme slate
 "NERD tree plugin
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
+"project plugin
+function! ToggleProject()
+  if exists('g:proj_running') && bufwinnr(g:proj_running) != -1 
+    " already visible
+    :execute "bd " . g:proj_running
+  else
+    Project
+  endif
+endfunction
+map <leader>p :call ToggleProject()<CR>
+
