@@ -47,3 +47,7 @@ function! s:ToggleProject()
 endfunction
 map <leader>p :call <SID>ToggleProject()<CR>
 
+"fuzzyfinder
+map <leader>f :FuzzyFinderFile<CR>
+map <leader>b :FuzzyFinderBuffer<CR>
+map <leader>r :FuzzyFinderMruFile<CR>
