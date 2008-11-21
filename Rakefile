@@ -2,11 +2,12 @@ require 'rake/testtask'
 require 'find'
 require 'rake/lib/group'
 
+DotFiles.force = true if %w(true 1 yes).include?(ENV['force'])
 groups = Dir.glob("configs/*").collect { |f| DotFiles::Group.new(f) if File.directory?(f) }
 
 namespace :install do
   groups.each do |group|
-    desc "install configs for #{group.name}"
+    desc "install configs for #{group.name}. Use force=true option to replace existing files."
     task group.name do 
       group.install ENV['HOME']
     end

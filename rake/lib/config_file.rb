@@ -32,7 +32,16 @@ module DotFiles
 
       def ln_s(src, dest)
         src = File.expand_path src
-        return if File.symlink?(dest) and File.readlink(dest) == src
+        if File.symlink?(dest) and File.readlink(dest) == src
+          return
+        elsif File.file?(dest)
+          if DotFiles.force
+            FileUtils.rm dest
+          else
+            raise RuntimeError.new("file #{dest} already exists") if File.file?(dest)
+          end
+        end
+
         puts "ln_s #{src} #{dest}" if DotFiles.debug
         FileUtils.ln_s src, dest
       end
