@@ -1,37 +1,38 @@
-""Use comma instead of backslash for leader commands
+"Use comma instead of backslash for leader commands
 let mapleader = ","
 
-""no line numbers by default
+"no line numbers
 set nonumber
 
-""allow hidden files which does stuff like preserve undo history
+"allow hidden buffers which does stuff like preserve undo history
 set hidden
 
-""set swap and backup files dir so that they don't clutter
-""up your source tree
+"set swap and backup files dir so that they don't clutter work areas
 set backupdir=/tmp
 set directory=/tmp
 
-""set up bash-style tab-completion
+"set up bash-style tab-completion
 set wildmode=list:longest
 
-""Have modal stuff be visible
+"Have modal stuff be visible
 set showcmd
 set showmode
 
-""Buffer switching shortcuts
+"Buffer switching shortcuts
 nnoremap <C-N> :bnext<CR>
 nnoremap <C-P> :bprev<CR>
 
-""This command switches on spell checking
-""set spell spelllang=en_us
+"This command switches on spell checking
+"(note: use 'setfiletype text' instead of this)
+"set spell spelllang=en_us
 
-""A color scheme visible on LCDs
-colorscheme vibrantink 
+"purty colors
+syntax on
+colorscheme slate
 
-""Nice font for gvim
-set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
+"Nice font for gvim
+"set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
 
-""NERD tree plugin
+"NERD tree plugin
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
