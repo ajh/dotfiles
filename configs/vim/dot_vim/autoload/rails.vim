@@ -1,0 +1,1 @@
+../../../../submodules/vim-rails/autoload/rails.vim
