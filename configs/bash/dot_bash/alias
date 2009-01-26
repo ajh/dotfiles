@@ -1,6 +1,8 @@
 # file list 
+alias ls='ls -G'
 alias ll='ls -l'
 alias la='ls -la'
+alias less='less -R'
 
 # development
 alias nosvn='grep -v \.svn'
@@ -14,3 +16,4 @@ alias tnr="cd -P ~/devel/substantial/the_new_record/gorillakiller"
 alias aasd="cd -P /home/ajh/devel/personal_git/acts_as_soft_deletable"
 alias my_oh_my="cd -P ~/devel/my_oh_my"
 alias fom="cd -P ~/devel/substantial/first_on_mars/first_on_mars"
+alias zb="cd -P ~/devel/zobox"

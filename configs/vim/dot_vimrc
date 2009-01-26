@@ -14,9 +14,14 @@ set directory=/tmp
 "set up bash-style tab-completion
 set wildmode=list:longest
 
-"Have modal stuff be visible
+"Have modal and state stuff be visible
 set showcmd
 set showmode
+set ruler
+
+"Turn on auto indent stuff for development (couldn't get this to work in the filetype scripts?)
+set autoindent
+set smartindent
 
 "Buffer switching shortcuts
 nnoremap <C-N> :bnext<CR>
