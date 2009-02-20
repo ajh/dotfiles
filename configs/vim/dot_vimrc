@@ -26,6 +26,8 @@ set smartindent
 "Buffer switching shortcuts
 nnoremap <C-N> :bnext<CR>
 nnoremap <C-P> :bprev<CR>
+noremap <C-K> 10k
+noremap <C-J> 10j
 
 "This command switches on spell checking
 "(note: use 'setfiletype text' instead of this)
@@ -45,7 +47,7 @@ map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 function! s:ToggleProject()
   if exists('g:proj_running') && bufwinnr(g:proj_running) != -1 
     " already visible
-    :execute "bdelete " . g:proj_running
+    :execute "bwipe " . g:proj_running
   else
     Project
   endif
