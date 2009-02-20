@@ -8,7 +8,7 @@ alias less='less -R'
 alias nosvn='grep -v \.svn'
 #alias exgrep="grep --exclude='*.svn*' --exclude='tags' --exclude='*log*'"
 alias svn_add_new="svn st | grep '?' | tr -s ' ' | cut -d ' ' -f 2 | xargs svn add"
-alias db_rebuild="rake db:drop:all && rake db:create:all && rake db:migrate && rake db:fixtures:load && rake db:test:prepare"
+alias db_rebuild="rake db:reset && rake db:fixtures:load && rake db:test:prepare"
 
 # frequently used directories
 alias gk="cd -P ~/devel/substantial/the_new_record/gorillakiller"
