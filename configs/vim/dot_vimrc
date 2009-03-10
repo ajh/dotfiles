@@ -39,6 +39,9 @@ colorscheme slate
 "Refresh help file tags for plugins
 helptags ~/.vim/doc
 
+"load matchit plugin (needs a system install version of matchit.)
+runtime! macros/matchit.vim
+
 "NERD tree plugin
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
