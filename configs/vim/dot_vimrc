@@ -1,3 +1,6 @@
+"Get out of the stone age
+set nocompatible
+
 "Use comma instead of backslash for leader commands
 let mapleader = ","
 
@@ -19,19 +22,12 @@ set showcmd
 set showmode
 set ruler
 
-"Turn on auto indent stuff for development (couldn't get this to work in the filetype scripts?)
-set autoindent
-set smartindent
+"Configure filetype support
+filetype plugin indent on
 
-"Buffer switching shortcuts
-nnoremap <C-N> :bnext<CR>
-nnoremap <C-P> :bprev<CR>
-noremap <C-K> 10k
+"Some shortcuts
+noremap <C-K> 10k "scroll up and down 10 lines at a time
 noremap <C-J> 10j
-
-"This command switches on spell checking
-"(note: use 'setfiletype text' instead of this)
-"set spell spelllang=en_us
 
 "purty colors
 syntax on
@@ -39,6 +35,9 @@ colorscheme slate
 
 "Nice font for gvim
 "set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
+
+"Refresh help file tags for plugins
+helptags ~/.vim/doc
 
 "NERD tree plugin
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
@@ -58,3 +57,4 @@ map <leader>p :call <SID>ToggleProject()<CR>
 map <leader>f :FuzzyFinderFile<CR>
 map <leader>b :FuzzyFinderBuffer<CR>
 map <leader>r :FuzzyFinderMruFile<CR>
+
