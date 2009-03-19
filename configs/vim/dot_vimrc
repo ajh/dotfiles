@@ -26,7 +26,8 @@ set ruler
 filetype plugin indent on
 
 "Some shortcuts
-noremap <C-K> 10k "scroll up and down 10 lines at a time
+" * scroll up and down 10 lines at a time
+noremap <C-K> 10k
 noremap <C-J> 10j
 
 "purty colors
@@ -61,3 +62,7 @@ map <leader>f :FuzzyFinderFile<CR>
 map <leader>b :FuzzyFinderBuffer<CR>
 map <leader>r :FuzzyFinderMruFile<CR>
 
+"configure grep to exclude stuff I never want
+"This doesn't do what I want because exclude only matches on the basename of
+"a file
+"set grepprg=grep\ --line-number\ --exclude='*\/.svn\/*'\ $*\ /dev/null
