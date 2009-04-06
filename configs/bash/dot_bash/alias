@@ -12,9 +12,6 @@ alias db_rebuild="rake db:reset && rake spec:db:fixtures:load && rake db:test:pr
 alias upst="echo 'svn up; svn st' | sh -x"
 
 # frequently used directories
-alias gk="cd -P ~/devel/substantial/the_new_record/gorillakiller"
-alias tnr="cd -P ~/devel/substantial/the_new_record/gorillakiller"
 alias aasd="cd -P /home/ajh/devel/personal_git/acts_as_soft_deletable"
-alias my_oh_my="cd -P ~/devel/my_oh_my"
-alias fom="cd -P ~/devel/substantial/first_on_mars/first_on_mars"
-alias zb="cd -P ~/devel/zobox"
+alias aspen="cd -P ~/devel/aspen"
+alias dotfiles="cd -P ~/devel/dotfiles"
