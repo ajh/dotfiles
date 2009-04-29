@@ -66,3 +66,8 @@ map <leader>r :FuzzyFinderMruFile<CR>
 "This doesn't do what I want because exclude only matches on the basename of
 "a file
 "set grepprg=grep\ --line-number\ --exclude='*\/.svn\/*'\ $*\ /dev/null
+
+"I'm starting to think I always want these...
+set shiftwidth=2
+set tabstop=2
+set expandtab
