@@ -7,3 +7,6 @@
 [submodule "submodules/vim-surround"]
 	path = submodules/vim-surround
 	url = git://github.com/tpope/vim-surround.git
+[submodule "submodules/vim-cucumber"]
+	path = submodules/vim-cucumber
+	url = git://github.com/tpope/vim-cucumber.git
