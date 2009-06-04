@@ -6,6 +6,7 @@ alias less='less -R'
 
 # development
 alias nosvn='grep -v \.svn'
+alias svndiff='svn diff -x -w'
 #alias exgrep="grep --exclude='*.svn*' --exclude='tags' --exclude='*log*'"
 alias svn_add_new="svn st | grep '?' | tr -s ' ' | cut -d ' ' -f 2 | xargs svn add"
 alias db_rebuild="rake db:reset && rake spec:db:fixtures:load && rake db:test:prepare"
