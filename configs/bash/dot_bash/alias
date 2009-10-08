@@ -9,7 +9,7 @@ alias nosvn='grep -v \.svn'
 alias svndiff='svn diff -x -w'
 #alias exgrep="grep --exclude='*.svn*' --exclude='tags' --exclude='*log*'"
 alias svn_add_new="svn st | grep '?' | tr -s ' ' | cut -d ' ' -f 2 | xargs svn add"
-alias db_rebuild="rake db:reset && rake spec:db:fixtures:load && rake db:test:prepare"
+alias db_rebuild="rake db:reset && rake spec:db:fixtures:load && rake db:test:prepare && rake ts:rebuild"
 alias upst="echo 'svn up; svn st' | sh -x"
 
 alias switch-trunk="svn switch http://svn/aspen/trunk"
