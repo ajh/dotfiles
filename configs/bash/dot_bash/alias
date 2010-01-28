@@ -14,5 +14,5 @@ alias upst="echo 'svn up; svn st' | sh -x"
 
 # frequently used directories
 alias aspen="cd -P ~/devel/aspen"
-alias rutab="cd -P ~/devel/rutab"
+alias snowbell="cd -P ~/devel/snowbell"
 alias dotfiles="cd -P ~/devel/dotfiles"
