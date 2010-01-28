@@ -12,10 +12,7 @@ alias svn_add_new="svn st | grep '?' | tr -s ' ' | cut -d ' ' -f 2 | xargs svn a
 alias db_rebuild="rake db:reset && rake spec:db:fixtures:load && rake db:test:prepare && rake ts:rebuild"
 alias upst="echo 'svn up; svn st' | sh -x"
 
-alias switch-trunk="svn switch http://svn/aspen/trunk"
-alias switch-pauls_css_work="svn switch http://svn/aspen/branches/pauls_css_work"
-
 # frequently used directories
-alias aasd="cd -P /home/ajh/devel/personal_git/acts_as_soft_deletable"
 alias aspen="cd -P ~/devel/aspen"
+alias rutab="cd -P ~/devel/rutab"
 alias dotfiles="cd -P ~/devel/dotfiles"
