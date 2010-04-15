@@ -32,10 +32,7 @@ noremap <C-J> 10j
 
 "purty colors
 syntax on
-colorscheme slate
-
-"Nice font for gvim
-"set guifont=Bitstream\ Vera\ Sans\ Mono\ 9
+"colorscheme slate
 
 "Refresh help file tags for plugins
 helptags ~/.vim/doc
