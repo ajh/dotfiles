@@ -22,6 +22,10 @@ module DotFiles
       ln_s @project_file, install_file
     end
 
+    def inspect
+      "#<#{self.class.to_s} #{@project_file.inspect}>"
+    end
+
     private 
 
       def mkdir_p(dir)

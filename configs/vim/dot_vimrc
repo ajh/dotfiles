@@ -59,12 +59,13 @@ map <leader>f :FuzzyFinderFile<CR>
 map <leader>b :FuzzyFinderBuffer<CR>
 map <leader>r :FuzzyFinderMruFile<CR>
 
-"configure grep to exclude stuff I never want
-"This doesn't do what I want because exclude only matches on the basename of
-"a file
-"set grepprg=grep\ --line-number\ --exclude='*\/.svn\/*'\ $*\ /dev/null
+"Use my aliased grep that excludes svn directores amoung other things
+set grepprg=svngrep\ --line-number\ $*\ /dev/null
 
 "I'm starting to think I always want these...
 set shiftwidth=2
 set tabstop=2
 set expandtab
+
+"Have :!{cmd} use an interactive shell so I have my shopts and aliases
+set shellcmdflag=-ic

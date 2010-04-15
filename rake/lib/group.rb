@@ -19,5 +19,9 @@ module DotFiles
       @files.each {|f| f.install install_dir}
     end
 
+    def inspect
+      "#<#{self.class.to_s}: @name=#{@name.inspect} @files=#{@files.inspect}>"
+    end
+
   end
 end
