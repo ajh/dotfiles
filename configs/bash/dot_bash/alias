@@ -8,9 +8,9 @@ alias less='less -R'
 alias nosvn='grep -v \.svn'
 alias svndiff='svn diff -x -w'
 # requires grep 2.5.3 for the --exclude-dir option
-alias svngrep="grep --exclude-dir='\.svn' --exclude='tags' --exclude='*.log' --binary-files=without-match"
+alias svngrep="grep --exclude-dir='\.svn' --exclude-dir='public/system' --exclude='tags' --exclude='*.log' --binary-files=without-match"
 alias svn_add_new="svn st | grep '?' | tr -s ' ' | cut -d ' ' -f 2 | xargs svn add"
-alias db_rebuild="rake db:reset && rake spec:db:fixtures:load && rake db:test:prepare && rake ts:rebuild"
+alias db_rebuild="rake db:reset && rake spec:db:fixtures:load && rake db:test:prepare && rake ts:rebuild && rm -rf public/system/*"
 alias upst="echo 'svn up; svn st' | sh -x"
 
 # frequently used directories
