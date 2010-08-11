@@ -60,7 +60,7 @@ map <leader>b :FuzzyFinderBuffer<CR>
 map <leader>r :FuzzyFinderMruFile<CR>
 
 "Use my aliased grep that excludes svn directores amoung other things
-set grepprg=svngrep\ --line-number\ $*\ /dev/null
+set grepprg=rails-grep\ --line-number\ $*\ /dev/null
 
 "I'm starting to think I always want these...
 set shiftwidth=2

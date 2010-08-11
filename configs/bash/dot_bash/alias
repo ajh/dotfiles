@@ -4,16 +4,18 @@ alias ll='ls -l'
 alias la='ls -la'
 alias less='less -R'
 
-# development
+# subversion
 alias nosvn='grep -v \.svn'
-alias svndiff='svn diff -x -w'
-# requires grep 2.5.3 for the --exclude-dir option
-alias svngrep="grep --exclude-dir='\.svn' --exclude-dir='public/system' --exclude-dir='tmp' --exclude='tags' --exclude='*.log' --binary-files=without-match"
-alias svn_add_new="svn st | grep '?' | tr -s ' ' | cut -d ' ' -f 2 | xargs svn add"
-alias db_rebuild="rake db:reset && rake spec:db:fixtures:load && rake db:test:prepare && rake ts:rebuild && rm -rf public/system/*"
-alias upst="echo 'svn up; svn st' | sh -x"
-# rs for ReStart
-alias rs="touch tmp/restart.txt; curl http://localhost > /dev/null"
+alias svn-diff='svn diff -x -w'
+alias upst="echo '+ svn up' && svn up && echo '+ svn st' && svn st"
+alias svn-grep="grep --exclude-dir='\.svn' --binary-files=without-match" # --exclude-dir requires grep 2.5.3
+alias svn-add-new="svn st | grep '?' | tr -s ' ' | cut -d ' ' -f 2 | xargs svn add"
+
+# rails
+alias rails-grep="svn-grep --exclude-dir='public/system' --exclude-dir='tmp' --exclude='tags' --exclude='*.log'"
+alias rails-rebuild="echo 'rake db:reset && rake db:test:prepare && rm -rf public/system/* && rake log:clear && rake spec:db:fixtures:load' | sh -x"
+alias aspen-rebuild="rails-rebuild && echo 'rake ts:rebuild && ./bin/development/apply_sample_documents && ./bin/development/apply_sample_logos_to_senders' | sh -x"
+alias rails-restart="touch tmp/restart.txt; curl http://localhost > /dev/null"
 
 # frequently used directories
 alias aspen="cd -P ~/devel/aspen"
