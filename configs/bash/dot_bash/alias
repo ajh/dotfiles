@@ -1,23 +1,26 @@
 # file list 
-alias ls='ls -G'
-alias ll='ls -l'
 alias la='ls -la'
 alias less='less -R'
+alias ll='ls -l'
+alias ls='ls -G'
 
 # subversion
 alias nosvn='grep -v \.svn'
-alias svn-diff='svn diff -x -w'
-alias upst="echo '+ svn up' && svn up && echo '+ svn st' && svn st"
-alias svn-grep="grep --exclude-dir='\.svn' --binary-files=without-match" # --exclude-dir requires grep 2.5.3
 alias svn-add-new="svn st | grep '?' | tr -s ' ' | cut -d ' ' -f 2 | xargs svn add"
+alias svn-diff='svn diff -x -w'
+alias svn-grep="grep --exclude-dir='\.svn' --binary-files=without-match" # --exclude-dir requires grep 2.5.3
+alias upst="echo '+ svn up' && svn up && echo '+ svn st' && svn st"
 
 # rails
 alias rails-grep="svn-grep --exclude-dir='public/system' --exclude-dir='tmp' --exclude='tags' --exclude='*.log'"
 alias rails-rebuild="echo 'rake db:reset && rake db:test:prepare && rm -rf public/system/* && rake log:clear && rake spec:db:fixtures:load' | sh -x"
-alias aspen-rebuild="rails-rebuild && echo 'rake ts:rebuild && ./bin/development/apply_sample_documents && ./bin/development/apply_sample_logos_to_senders' | sh -x"
 alias rails-restart="touch tmp/restart.txt; curl http://localhost > /dev/null"
+
+# aspen
+alias aspen-rebuild="rails-rebuild && echo 'rake ts:rebuild && ./bin/development/apply_sample_documents && ./bin/development/apply_sample_logos_to_senders' | sh -x"
+alias aspen-restart="rails-restart"
 
 # frequently used directories
 alias aspen="cd -P ~/devel/aspen"
-alias snowbell="cd -P ~/devel/snowbell"
 alias dotfiles="cd -P ~/devel/dotfiles"
+alias snowbell="cd -P ~/devel/snowbell"
