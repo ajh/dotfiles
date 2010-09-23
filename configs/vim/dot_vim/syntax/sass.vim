@@ -1,1 +1,0 @@
-../../../../submodules/vim-haml/syntax/sass.vim
