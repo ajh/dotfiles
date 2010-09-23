@@ -4,6 +4,12 @@ set nocompatible
 "Use comma instead of backslash for leader commands
 let mapleader = ","
 
+"Load pathogen bundles then configure filetype support
+filetype off
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+filetype plugin indent on
+
 "no line numbers
 set nonumber
 
@@ -22,9 +28,6 @@ set showcmd
 set showmode
 set ruler
 
-"Configure filetype support
-filetype plugin indent on
-
 "Some shortcuts
 " * scroll up and down 10 lines at a time
 noremap <C-K> 10k
@@ -34,25 +37,11 @@ noremap <C-J> 10j
 syntax on
 "colorscheme slate
 
-"Refresh help file tags for plugins
-helptags ~/.vim/doc
-
 "load matchit plugin (needs a system install version of matchit.)
 runtime! macros/matchit.vim
 
 "NERD tree plugin
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
-
-"project plugin
-function! s:ToggleProject()
-  if exists('g:proj_running') && bufwinnr(g:proj_running) != -1 
-    " already visible
-    :execute "bwipe " . g:proj_running
-  else
-    Project
-  endif
-endfunction
-map <leader>p :call <SID>ToggleProject()<CR>
 
 "fuzzyfinder
 map <leader>f :FuzzyFinderFile<CR>
