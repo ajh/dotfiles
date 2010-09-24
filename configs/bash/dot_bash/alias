@@ -17,7 +17,7 @@ alias rails-rebuild="echo 'rake db:reset && rake db:test:prepare && rm -rf publi
 alias rails-restart="touch tmp/restart.txt; curl http://localhost > /dev/null"
 
 # aspen
-alias aspen-rebuild="rails-rebuild && echo 'rake ts:rebuild && ./bin/development/apply_sample_documents && ./bin/development/apply_sample_logos_to_senders' | sh -x"
+alias aspen-rebuild="rails-rebuild && echo 'rake ts:rebuild && ./bin/development/apply_sample_documents && ./bin/development/apply_sample_logos_to_providers' | sh -x"
 alias aspen-restart="rails-restart"
 
 # frequently used directories
