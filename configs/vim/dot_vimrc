@@ -58,3 +58,7 @@ set expandtab
 
 "Have :!{cmd} use an interactive shell so I have my shopts and aliases
 set shellcmdflag=-ic
+
+"Rspec quickfix setup
+set errorformat=%f:%l\ %n\ %m
+map <leader>s :cfile tmp/quickfix<CR>
