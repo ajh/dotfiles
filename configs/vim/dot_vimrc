@@ -43,10 +43,8 @@ runtime! macros/matchit.vim
 "NERD tree plugin
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
-"fuzzyfinder
-map <leader>f :FuzzyFinderFile<CR>
-map <leader>b :FuzzyFinderBuffer<CR>
-map <leader>r :FuzzyFinderMruFile<CR>
+"CommandT
+"map <leader>T :CommandTFlush<CR>
 
 "Use my aliased grep that excludes svn directores amoung other things
 set grepprg=rails-grep\ --line-number\ $*\ /dev/null
