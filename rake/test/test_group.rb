@@ -20,6 +20,13 @@ module DotFiles
 
       assert_equal [fixture_group_dir], group.files.collect(&:project_dir).uniq
     end
+    
+    def test_new_should_ignore_real_dotfiles
+      FileUtils.touch File.join(@fixture_group_dir, '.DS_Store')
+
+      group = Group.new fixture_group_dir
+      assert !group.files.collect(&:project_file).any? {|f| f.match %r/DS_Store/}
+    end
 
     def test_install_should_install_config_files
       group = Group.new fixture_group_dir

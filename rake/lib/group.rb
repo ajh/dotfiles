@@ -8,7 +8,10 @@ module DotFiles
     def initialize(directory)
       @name = File.basename(directory)
       @files = []
-      Find.find(directory) { |f| @files << ConfigFile.new(f, :project_dir => directory) if File.file? f }
+      Find.find(directory) do |f| 
+        File.file?(f) && !hidden?(f) or next
+        @files << ConfigFile.new(f, :project_dir => directory)
+      end
     end
 
     def <=>(other)
@@ -23,5 +26,10 @@ module DotFiles
       "#<#{self.class.to_s}: @name=#{@name.inspect} @files=#{@files.inspect}>"
     end
 
+    private
+
+      def hidden?(filename)
+        File.basename(filename).match %r/^\./
+      end
   end
 end
