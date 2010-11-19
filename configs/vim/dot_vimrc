@@ -13,12 +13,22 @@ filetype plugin indent on
 "no line numbers
 set nonumber
 
+"Highlight tabs and trailing whitespace
+set list
+set listchars=tab:➙.,trail:.,extends:❱,precedes:❰,nbsp:░
+
+"Allow directory .vimrc files and disable unsafe commands in local .vimrc files
+set exrc
+set secure
+
 "allow hidden buffers which does stuff like preserve undo history
 set hidden
 
-"set swap and backup files dir so that they don't clutter work areas
-set backupdir=/tmp
-set directory=/tmp
+"Use backups, but dont' try to have them be in .vim because of filename
+"conflicts.
+set backup
+"set backupdir=~/.vim/backup
+"set directory=~/.vim/swap
 
 "set up bash-style tab-completion
 set wildmode=list:longest
@@ -27,6 +37,12 @@ set wildmode=list:longest
 set showcmd
 set showmode
 set ruler
+
+"More history
+set history=1000
+
+"Read files that have changed on disk but not in vim
+set autoread
 
 "Some shortcuts
 " * scroll up and down 10 lines at a time
@@ -44,7 +60,8 @@ runtime! macros/matchit.vim
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
 "CommandT
-"map <leader>T :CommandTFlush<CR>
+let g:CommandTMatchWindowAtTop=1
+"map <leader>f :CommandTFlush "not sure why this doesn't work
 
 "Use my aliased grep that excludes svn directores amoung other things
 set grepprg=rails-grep\ --line-number\ $*\ /dev/null
@@ -60,3 +77,7 @@ set shellcmdflag=-ic
 "Rspec quickfix setup
 set errorformat=%f:%l\ %n\ %m
 map <leader>s :cfile tmp/quickfix<CR>
+
+"Window shortcuts
+map <leader>v :vsp<CR>
+map <leader>s :sp<CR>
