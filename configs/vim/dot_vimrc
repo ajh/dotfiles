@@ -26,7 +26,7 @@ set hidden
 
 "Use backups, but dont' try to have them be in .vim because of filename
 "conflicts.
-set backup
+"set backup
 "set backupdir=~/.vim/backup
 "set directory=~/.vim/swap
 
@@ -76,7 +76,7 @@ set shellcmdflag=-ic
 
 "Rspec quickfix setup
 set errorformat=%f:%l\ %n\ %m
-map <leader>s :cfile tmp/quickfix<CR>
+map <leader>e :cfile tmp/quickfix<CR>
 
 "Window shortcuts
 map <leader>v :vsp<CR>
