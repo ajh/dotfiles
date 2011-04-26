@@ -51,7 +51,7 @@ noremap <C-J> 10j
 
 "purty colors
 syntax on
-"colorscheme slate
+colorscheme slate
 
 "load matchit plugin (needs a system install version of matchit.)
 runtime! macros/matchit.vim
