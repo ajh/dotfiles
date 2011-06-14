@@ -74,7 +74,7 @@ set shellcmdflag=-ic
 "Rspec quickfix setup
 map <leader>e :cfile tmp/quickfix<CR>
 set errorformat=
-    \%-Z\ \ \ \ \ \#\ %f:%l:%.%#,%E\ \ %\\d%\\+)%.%#,%C%m,%Z,
+    \%-Z\ \ \ \ \ \#\ %f:%l%.%#,%E\ \ %\\d%\\+)%.%#,%C%m,%Z,
     \%-Z%f:%l:%.%#,%E%\\d%\\+)%.%#,%C%m,%Z,
     \%+W'%.%#'\ FAILED,
     \%+I'%.%#'\ FIXED,
@@ -87,7 +87,8 @@ set errorformat=
     \%E%f:%l:\ %m,
     \%-Z%\tfrom\ %f:%l,
     \%-Z%p^%.%#,
-    \%C%.%#
+    \%C%.%#,
+    \%-G%.%#
 
 "Window shortcuts
 map <leader>v :vsp<CR>
