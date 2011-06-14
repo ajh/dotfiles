@@ -8,7 +8,7 @@ alias ls='ls -G'
 alias nosvn='grep -v \.svn'
 alias svn-add-new="svn st | grep '?' | tr -s ' ' | cut -d ' ' -f 2 | xargs svn add"
 alias svn-diff='svn diff -x -w'
-alias svn-grep="grep --exclude-dir='\.svn' --binary-files=without-match" # --exclude-dir requires grep 2.5.3
+alias svn-grep="grep --exclude-dir='\.svn' --exclude-dir='\.git' --binary-files=without-match" # --exclude-dir requires grep 2.5.3
 alias upst="echo '+ svn up' && svn up && echo '+ svn st' && svn st"
 
 # rails
