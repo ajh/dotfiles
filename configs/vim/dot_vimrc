@@ -41,9 +41,6 @@ set ruler
 "More history
 set history=1000
 
-"Read files that have changed on disk but not in vim
-set autoread
-
 "Some shortcuts
 " * scroll up and down 10 lines at a time
 noremap <C-K> 10k
