@@ -1,0 +1,11 @@
+# frequently used directories
+alias aspen="cd -P ~/devel/aspen"
+alias dotfiles="cd -P ~/devel/dotfiles"
+alias snowbell="cd -P ~/devel/snowbell"
+alias saba="cd -P ~/devel/saba"
+alias poui="cd -P ~/devel/poui"
+alias cacao="cd -P ~/devel/cacao"
+
+# aspen
+alias aspen-rebuild="rails-rebuild && echo 'rake ts:rebuild bin:apply_sample_documents bin:apply_sample_logos_to_providers' | sh -x"
+alias aspen-restart="rails-restart"

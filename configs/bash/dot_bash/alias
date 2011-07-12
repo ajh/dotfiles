@@ -13,9 +13,5 @@ alias upst="echo '+ svn up' && svn up && echo '+ svn st' && svn st"
 
 # rails
 alias rails-grep="svn-grep --exclude-dir='public/system' --exclude-dir='tmp' --exclude='tags' --exclude='*.log'"
-alias rails-rebuild="echo 'rake db:reset && rm -rf public/system/* && rake log:clear && rake db:fixtures:load FIXTURES_PATH=spec/fixtures' | sh -x"
-alias rails-restart="touch tmp/restart.txt && curl http://localhost > /dev/null"
-
-# aspen
-alias aspen-rebuild="rails-rebuild && echo 'rake ts:rebuild && rake bin:apply_sample_documents && rake bin:apply_sample_logos_to_providers' | sh -x"
-alias aspen-restart="rails-restart"
+alias rails-rebuild="echo 'rake db:reset db:fixtures:load FIXTURES_PATH=spec/fixtures log:clear && rm -rf public/system/* && rake db:test:prepare' | sh -x"
+alias rails-restart="touch tmp/restart.txt"
