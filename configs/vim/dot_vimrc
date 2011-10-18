@@ -93,3 +93,10 @@ set errorformat=
 "Window shortcuts
 map <leader>v :vsp<CR>
 map <leader>s :sp<CR>
+
+"iTerm2 seems to work with a mouse over ssh
+set mouse=a
+
+"I often want this. Most code syntax plugins are smart enough to only
+"spellcheck in comments.
+set spell
