@@ -54,11 +54,12 @@ colorscheme slate
 runtime! macros/matchit.vim
 
 "NERD tree plugin
-map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+map <leader>nt :execute 'NERDTreeToggle ' . getcwd()<CR>
+map <leader>nf :NERDTreeFind<CR>
 
 "CommandT
 let g:CommandTMatchWindowAtTop=1
-"map <leader>f :CommandTFlush "not sure why this doesn't work
+"map <leader>tf :CommandTFlush<CR>
 
 "Use my aliased grep that excludes svn directores amoung other things
 set grepprg=rails-grep\ --line-number\ $*\ /dev/null
@@ -72,31 +73,46 @@ set expandtab
 set shellcmdflag=-ic
 
 "Rspec quickfix setup
-map <leader>e :cfile tmp/quickfix<CR>
-set errorformat=
-    \%-Z\ \ \ \ \ \#\ %f:%l%.%#,%E\ \ %\\d%\\+)%.%#,%C%m,%Z,
-    \%-Z%f:%l:%.%#,%E%\\d%\\+)%.%#,%C%m,%Z,
-    \%+W'%.%#'\ FAILED,
-    \%+I'%.%#'\ FIXED,
-    \%-Cexpected:%.%#,
-    \%-C\ \ \ \ \ got:%.%#,
-    \%E%.%#:in\ `load':\ %f:%l:%m,
-    \%C%f:%l:,
-    \%W%f:%l:\ warning:\ %m,
-    \%E%f:%l:in\ %*[^:]:\ %m,
-    \%E%f:%l:\ %m,
-    \%-Z%\tfrom\ %f:%l,
-    \%-Z%p^%.%#,
-    \%C%.%#,
-    \%-G%.%#
+"map <leader>e :cfile tmp/quickfix<CR>
+"set errorformat=
+    "\%-Z\ \ \ \ \ \#\ %f:%l%.%#,%E\ \ %\\d%\\+)%.%#,%C%m,%Z,
+    "\%-Z%f:%l:%.%#,%E%\\d%\\+)%.%#,%C%m,%Z,
+    "\%+W'%.%#'\ FAILED,
+    "\%+I'%.%#'\ FIXED,
+    "\%-Cexpected:%.%#,
+    "\%-C\ \ \ \ \ got:%.%#,
+    "\%E%.%#:in\ `load':\ %f:%l:%m,
+    "\%C%f:%l:,
+    "\%W%f:%l:\ warning:\ %m,
+    "\%E%f:%l:in\ %*[^:]:\ %m,
+    "\%E%f:%l:\ %m,
+    "\%-Z%\tfrom\ %f:%l,
+    "\%-Z%p^%.%#,
+    "\%C%.%#,
+    "\%-G%.%#
 
 "Window shortcuts
 map <leader>v :vsp<CR>
 map <leader>s :sp<CR>
 
 "iTerm2 seems to work with a mouse over ssh
-set mouse=a
+"set mouse=a
 
 "I often want this. Most code syntax plugins are smart enough to only
 "spellcheck in comments.
-set spell
+"set spell
+
+"Stuff from vimcasts
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+nmap _= :call Preserve("normal gg=G")<CR>
