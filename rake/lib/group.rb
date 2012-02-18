@@ -8,9 +8,13 @@ module DotFiles
     def initialize(directory)
       @name = File.basename(directory)
       @files = []
-      Find.find(directory) do |f| 
-        File.file?(f) && !hidden?(f) or next
-        @files << ConfigFile.new(f, :project_dir => directory)
+      Find.find(directory) do |path|
+        if File.directory?(path) && File.basename(path) == '.git'
+          Find.prune
+          next
+        end
+        File.file?(path) && !hidden?(path) or next
+        @files << ConfigFile.new(path, :project_dir => directory)
       end
     end
 

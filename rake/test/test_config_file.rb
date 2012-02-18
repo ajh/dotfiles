@@ -3,7 +3,7 @@ require 'fileutils'
 require 'find'
 
 module DotFiles
-  class ConfigFileTest < Test::Unit::TestCase
+  class ConfigFileTest < ::Test::Unit::TestCase
 
     def setup
       DotFiles.debug = false
