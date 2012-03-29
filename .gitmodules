@@ -19,3 +19,6 @@
 [submodule "configs/vim/dot_vim/bundle/snipmate"]
 	path = configs/vim/dot_vim/bundle/snipmate
 	url = https://github.com/msanders/snipmate.vim.git
+[submodule "vendor/z"]
+	path = vendor/z
+	url = https://github.com/rupa/z.git
