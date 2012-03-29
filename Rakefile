@@ -10,6 +10,9 @@ namespace :install do
     desc "install configs for #{group.name}. Use force=true option to replace existing files."
     task group.name do 
       group.install ENV['HOME']
+      if group.name.to_s == 'vim'
+        puts "Don't forget to install or update janus for vim: https://github.com/carlhuda/janus"
+      end
     end
   end
 end
