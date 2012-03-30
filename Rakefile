@@ -29,7 +29,7 @@ module Hooks
       'alias.st' => 'status',
       'color.ui' => 'auto',
       'core.excludesfile' => '~/.gitexcludes',
-      'push.default' => 'upstream',
+      #'push.default' => 'upstream', # ubuntu lucid version of git doesn't support this option
     }
 
     def self.install
