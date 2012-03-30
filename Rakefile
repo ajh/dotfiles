@@ -1,8 +1,9 @@
 require 'rake/testtask'
 require 'find'
-require 'rake/lib/group'
 require 'pathname'
 require 'shellwords'
+
+require Pathname.new(__FILE__).dirname.join('rake/lib/group')
 
 DotFiles.force = true if %w(true 1 yes).include?(ENV['force'])
 groups = Dir.glob("configs/*").collect { |f| DotFiles::Group.new(f) if File.directory?(f) }
