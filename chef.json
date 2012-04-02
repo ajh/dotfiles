@@ -1,3 +1,10 @@
 {
-    "run_list": [ "recipe[bash]" ]
+    "run_list": [ 
+      "recipe[bash]",
+      "recipe[git]",
+      "recipe[rvm]",
+      "recipe[screen]",
+      "recipe[vim]",
+      "recipe[z]"
+    ]
 }
