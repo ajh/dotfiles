@@ -1,4 +1,7 @@
-root = File.absolute_path(File.dirname(__FILE__))
+cookbook_path File.join(File.absolute_path(File.dirname(__FILE__)), 'cookbooks')
 
-file_cache_path root
-cookbook_path root + '/cookbooks'
+cache_options(:path => "#{ENV['HOME']}/.chef/checksums")
+
+file_backup_path "#{ENV['HOME']}/.chef/backup"
+file_cache_path "#{ENV['HOME']}/.chef/cache"
+sandbox_path "#{ENV['HOME']}/.chef/sandboxes"
