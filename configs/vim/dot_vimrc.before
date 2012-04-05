@@ -1,2 +1,4 @@
 "Use comma instead of backslash for leader commands
 let mapleader = ","
+
+let g:buffergator_suppress_keymaps = 1
