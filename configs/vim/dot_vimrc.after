@@ -31,7 +31,7 @@ function! Preserve(command)
   let @/=_s
   call cursor(l, c)
 endfunction
-nmap _$ :call Preserve("%s/\\s\\+$//e")<CR>
+map <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 
 "Have :!{cmd} use an interactive shell so I have my shopts and aliases
 "set shellcmdflag=-ic
