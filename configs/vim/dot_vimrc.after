@@ -38,3 +38,8 @@ map <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 
 "Use my aliased grep that excludes svn directores amoung other things
 "set grepprg=rails-grep\ --line-number\ $*\ /dev/null
+
+if janus#is_module_loaded("buffergator")
+  nmap <leader>b :BuffergatorToggle<CR>
+  nmap <leader>t :BuffergatorTabsToggle<CR>
+endif
