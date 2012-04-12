@@ -13,7 +13,7 @@ noremap <C-K> 10k
 noremap <C-J> 10j
 
 "purty colors
-colorscheme slate
+colorscheme solarized
 
 "Window shortcuts
 map <leader>v :vsp<CR>
