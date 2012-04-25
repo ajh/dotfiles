@@ -43,3 +43,6 @@ if janus#is_module_loaded("buffergator")
   nmap <leader>b :BuffergatorToggle<CR>
   nmap <leader>t :BuffergatorTabsToggle<CR>
 endif
+
+"Configure vroom to turn off rspec colors
+let g:vroom_use_colors=0
