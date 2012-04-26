@@ -13,6 +13,7 @@ noremap <C-K> 10k
 noremap <C-J> 10j
 
 "purty colors
+set background=dark
 colorscheme solarized
 
 "Window shortcuts
