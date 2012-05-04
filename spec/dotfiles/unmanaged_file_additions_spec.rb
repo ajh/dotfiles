@@ -53,7 +53,7 @@ describe Dotfiles::UnmanagedFile::Additions do
 
 # begin dotfiles custom additions
 [core]
-  excludesfile = ~/.gitexcludes
+  excludesfile = .gitexcludes
 # end dotfiles custom additions
         CONFIG
 
@@ -70,11 +70,11 @@ describe Dotfiles::UnmanagedFile::Additions do
         f << <<-CONFIG
 # Set color
 [color]
-	ui = auto
+  ui = auto
 
 # begin dotfiles other additions
 [core]
-	excludesfile = ~/.gitexcludes
+  excludesfile = .gitexcludes
 # end dotfiles other additions
         CONFIG
 
@@ -91,7 +91,7 @@ describe Dotfiles::UnmanagedFile::Additions do
         f << <<-CONFIG
 # Set color
 [color]
-	ui = auto
+  ui = auto
 
 # begin dotfiles custom additions
 [alias]
@@ -101,7 +101,7 @@ describe Dotfiles::UnmanagedFile::Additions do
 
 # begin dotfiles other additions
 [core]
-	excludesfile = ~/.gitexcludes
+  excludesfile = .gitexcludes
 # end dotfiles other additions
         CONFIG
 
@@ -125,7 +125,10 @@ describe Dotfiles::UnmanagedFile::Additions do
       include_context "file with additions"
 
       it "should return value in file" do
-        subject.to_s.should == "[core]\n  excludesfile = ~/.gitexcludes\n"
+        subject.to_s.should == <<-CONTENT
+[core]
+  excludesfile = .gitexcludes
+CONTENT
       end
     end
 
@@ -141,22 +144,27 @@ describe Dotfiles::UnmanagedFile::Additions do
       include_context "file with several named additions"
 
       it "should return value in file" do
-        subject.to_s.should == "[alias]\n  lp = log --patch --decorate\n  lg = log --graph --pretty=oneline --abbrev-commit\n"
+        subject.to_s.should == <<-CONTENT
+[alias]
+  lp = log --patch --decorate
+  lg = log --graph --pretty=oneline --abbrev-commit
+CONTENT
       end
     end
   end
 
-  # replace
   describe "#replace" do
     context "with no existing additions" do
       include_context "file without additions"
 
-      it "should write replaced string to file" do
+      it "should append additions to file" do
         subject.replace "hi there!"
 
-        subject.path.open do |f|
-          f.read.should match(%r/# begin dotfiles custom additions\nhi there!\n# end dotfiles custom additions/)
-        end
+        subject.path.open(&:read).should match(%r/#{Regexp.escape <<-CONTENT}$/)
+# begin dotfiles custom additions
+hi there!
+# end dotfiles custom additions
+        CONTENT
       end
     end
 
@@ -166,16 +174,118 @@ describe Dotfiles::UnmanagedFile::Additions do
       it "should write replaced string to file" do
         subject.replace "hi there!"
 
-        subject.path.open do |f|
-          f.read.should match(%r/# begin dotfiles custom additions\nhi there!\n# end dotfiles custom additions/)
-        end
+        subject.path.open(&:read).should match(%r/#{Regexp.escape <<-CONTENT}/)
+# begin dotfiles custom additions
+hi there!
+# end dotfiles custom additions
+        CONTENT
+      end
+    end
+
+    context "with other named additions" do
+      include_context "file with other named additions"
+
+      it "should append additions to file" do
+        subject.replace "hi there!"
+
+        subject.path.open(&:read).should match(%r/#{Regexp.escape <<-CONTENT}$/)
+# begin dotfiles custom additions
+hi there!
+# end dotfiles custom additions
+        CONTENT
+      end
+    end
+
+    context "with several named additions" do
+      include_context "file with several named additions"
+
+      it "should write replaced string to file while ignoring other additions" do
+        subject.replace "hi there!"
+
+        content = subject.path.open(&:read)
+        content.should match(%r/#{Regexp.escape <<-CUSTOM}/)
+# begin dotfiles custom additions
+hi there!
+# end dotfiles custom additions
+        CUSTOM
+        content.should match(%r/#{Regexp.escape <<-OTHER}/)
+# begin dotfiles other additions
+[core]
+  excludesfile = .gitexcludes
+# end dotfiles other additions
+        OTHER
       end
     end
   end
 
-  # <<
-  describe "add_content" do
-    it "should add values to the managed content"
+  describe "#concat" do
+    context "with no existing additions" do
+      include_context "file without additions"
+
+      it "should append additions to file" do
+        subject.concat "hi there!"
+
+        subject.path.open(&:read).should match(%r/#{Regexp.escape <<-CONTENT}$/)
+# begin dotfiles custom additions
+hi there!
+# end dotfiles custom additions
+        CONTENT
+      end
+    end
+
+    context "with existing additions" do
+      include_context "file with additions"
+
+      it "should write concated additions string to file" do
+        subject.concat "hi there!"
+
+        subject.path.open(&:read).should match(%r/#{Regexp.escape <<-CONTENT}$/)
+# begin dotfiles custom additions
+[core]
+  excludesfile = .gitexcludes
+hi there!
+# end dotfiles custom additions
+        CONTENT
+      end
+    end
+
+    context "with other named additions" do
+      include_context "file with other named additions"
+
+      it "should append additions to file" do
+        subject.concat "hi there!"
+
+        subject.path.open(&:read).should match(%r/#{Regexp.escape <<-CONTENT}$/)
+# begin dotfiles custom additions
+hi there!
+# end dotfiles custom additions
+        CONTENT
+      end
+    end
+
+    context "with several named additions" do
+      include_context "file with several named additions"
+
+      it "should write concated string to file while ignoring other additions" do
+        subject.concat "hi there!"
+
+        content = subject.path.open(&:read)
+        content.should match(%r/#{Regexp.escape <<-CUSTOM}$/)
+# begin dotfiles custom additions
+[alias]
+  lp = log --patch --decorate
+  lg = log --graph --pretty=oneline --abbrev-commit
+hi there!
+# end dotfiles custom additions
+        CUSTOM
+        content.should match(%r/#{Regexp.escape <<-OTHER}$/)
+# begin dotfiles other additions
+[core]
+  excludesfile = .gitexcludes
+# end dotfiles other additions
+        OTHER
+      end
+    end
   end
 
   # clear
