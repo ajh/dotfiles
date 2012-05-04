@@ -62,10 +62,10 @@ module Dotfiles
           string = ""
 
           f.each do |line|
-            if line =~ %r/#{addition.comment_token} begin dotfiles #{addition.name} additions/
+            if line =~ %r/#{Regexp.escape begin_comment_line(addition)}/
               start_reading = true
 
-            elsif line =~ %r/#{addition.comment_token} end dotfiles #{addition.name} additions/
+            elsif line =~ %r/#{Regexp.escape end_comment_line(addition)}/
               break
 
             elsif start_reading
@@ -88,16 +88,23 @@ module Dotfiles
             addition.path.open('w') do |writer|
               inside_additions = false
               found_additions = false
+              already_wrote_additions = false
 
               reader.each do |line|
-                if line =~ %r/#{addition.comment_token} begin dotfiles #{addition.name} additions/
+                if line =~ %r/#{Regexp.escape begin_comment_line(addition)}/
                   inside_additions = found_additions = true
+                  writer.write line
 
-                elsif line =~ %r/#{addition.comment_token} end dotfiles #{addition.name} additions/
+                elsif line =~ %r/#{Regexp.escape end_comment_line(addition)}/
                   inside_additions = false
+                  writer.write line
+
+                elsif inside_additions && already_wrote_additions
+                  next
 
                 elsif inside_additions
-                  writer.write addition.to_s
+                  already_wrote_additions = true
+                  writer.write addition.to_s.chomp + "\n"
 
                 else
                   writer.write line

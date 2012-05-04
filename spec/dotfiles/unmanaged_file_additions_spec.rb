@@ -113,7 +113,7 @@ describe Dotfiles::UnmanagedFile::Additions do
   end
 
   describe "#to_s" do
-    context "with no additions" do
+    context "with no existing additions" do
       include_context "file without additions"
 
       it "should return empty string" do
@@ -121,7 +121,7 @@ describe Dotfiles::UnmanagedFile::Additions do
       end
     end
 
-    context "with additions" do
+    context "with existing additions" do
       include_context "file with additions"
 
       it "should return value in file" do
@@ -148,8 +148,20 @@ describe Dotfiles::UnmanagedFile::Additions do
 
   # replace
   describe "#replace" do
-    context "with no additions" do
+    context "with no existing additions" do
       include_context "file without additions"
+
+      it "should write replaced string to file" do
+        subject.replace "hi there!"
+
+        subject.path.open do |f|
+          f.read.should match(%r/# begin dotfiles custom additions\nhi there!\n# end dotfiles custom additions/)
+        end
+      end
+    end
+
+    context "with existing additions" do
+      include_context "file with additions"
 
       it "should write replaced string to file" do
         subject.replace "hi there!"
