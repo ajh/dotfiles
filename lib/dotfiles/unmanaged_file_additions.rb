@@ -94,11 +94,27 @@ module Dotfiles
           string
         end
 
+        @file_is_empty = string.empty?
+
         replace string
       end
 
       # Write changes to file
       def flush
+        empty? && @file_is_empty and return
+
+        # Do a simple append
+        if !empty? && @file_is_empty
+          path.open('a') do |f|
+            f.write begin_comment_line
+            f.write to_s.chomp + "\n"
+            f.write end_comment_line
+          end
+
+          return
+        end
+
+        # Do a more expensive copy and replace
         Dir.mktmpdir do |dir|
           dir = Pathname.new dir
           copy_path = dir.join(path.basename)
@@ -106,36 +122,27 @@ module Dotfiles
 
           copy_path.open('r') do |reader|
             path.open('w') do |writer|
-              inside_additions = false
-              found_additions = false
-              already_wrote_additions = false
-              empty_additions = empty?
+              is_inside = false
 
               reader.each do |line|
                 if line =~ %r/#{Regexp.escape begin_comment_line}/
-                  inside_additions = found_additions = true
-                  writer.write line unless empty_additions
+                  is_inside = true
 
                 elsif line =~ %r/#{Regexp.escape end_comment_line}/
-                  inside_additions = false
-                  writer.write line unless empty_additions
+                  is_inside = false
 
-                elsif inside_additions && already_wrote_additions
+                  unless empty?
+                    writer.write begin_comment_line
+                    writer.write to_s.chomp + "\n"
+                    writer.write end_comment_line
+                  end
+
+                elsif is_inside
                   next
-
-                elsif inside_additions
-                  already_wrote_additions = true
-                  writer.write to_s.chomp + "\n" unless empty_additions
 
                 else
                   writer.write line
                 end
-              end
-
-              if !found_additions && !empty_additions
-                writer.write begin_comment_line
-                writer.write to_s.chomp + "\n"
-                writer.write end_comment_line
               end
             end
           end
