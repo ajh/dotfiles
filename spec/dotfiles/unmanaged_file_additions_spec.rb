@@ -160,7 +160,12 @@ CONTENT
       it "should append additions to file" do
         subject.replace "hi there!"
 
-        subject.path.open(&:read).should match(%r/#{Regexp.escape <<-CONTENT}$/)
+        subject.path.open(&:read).should == <<-CONTENT
+[color]
+  ui = auto
+[alias]
+  lp = log --patch --decorate
+  lg = log --graph --pretty=oneline --abbrev-commit
 # begin dotfiles custom additions
 hi there!
 # end dotfiles custom additions
@@ -174,7 +179,11 @@ hi there!
       it "should write replaced string to file" do
         subject.replace "hi there!"
 
-        subject.path.open(&:read).should match(%r/#{Regexp.escape <<-CONTENT}/)
+        subject.path.open(&:read).should == <<-CONTENT
+# Set color
+[color]
+  ui = auto
+
 # begin dotfiles custom additions
 hi there!
 # end dotfiles custom additions
@@ -188,7 +197,15 @@ hi there!
       it "should append additions to file" do
         subject.replace "hi there!"
 
-        subject.path.open(&:read).should match(%r/#{Regexp.escape <<-CONTENT}$/)
+        subject.path.open(&:read).should == <<-CONTENT
+# Set color
+[color]
+  ui = auto
+
+# begin dotfiles other additions
+[core]
+  excludesfile = .gitexcludes
+# end dotfiles other additions
 # begin dotfiles custom additions
 hi there!
 # end dotfiles custom additions
@@ -202,18 +219,20 @@ hi there!
       it "should write replaced string to file while ignoring other additions" do
         subject.replace "hi there!"
 
-        content = subject.path.open(&:read)
-        content.should match(%r/#{Regexp.escape <<-CUSTOM}/)
+        subject.path.open(&:read).should == <<-CONTENT
+# Set color
+[color]
+  ui = auto
+
 # begin dotfiles custom additions
 hi there!
 # end dotfiles custom additions
-        CUSTOM
-        content.should match(%r/#{Regexp.escape <<-OTHER}/)
+
 # begin dotfiles other additions
 [core]
   excludesfile = .gitexcludes
 # end dotfiles other additions
-        OTHER
+        CONTENT
       end
     end
   end
@@ -225,7 +244,12 @@ hi there!
       it "should append additions to file" do
         subject.concat "hi there!"
 
-        subject.path.open(&:read).should match(%r/#{Regexp.escape <<-CONTENT}$/)
+        subject.path.open(&:read).should == <<-CONTENT
+[color]
+  ui = auto
+[alias]
+  lp = log --patch --decorate
+  lg = log --graph --pretty=oneline --abbrev-commit
 # begin dotfiles custom additions
 hi there!
 # end dotfiles custom additions
@@ -239,7 +263,11 @@ hi there!
       it "should write concated additions string to file" do
         subject.concat "hi there!"
 
-        subject.path.open(&:read).should match(%r/#{Regexp.escape <<-CONTENT}$/)
+        subject.path.open(&:read).should == <<-CONTENT
+# Set color
+[color]
+  ui = auto
+
 # begin dotfiles custom additions
 [core]
   excludesfile = .gitexcludes
@@ -255,7 +283,15 @@ hi there!
       it "should append additions to file" do
         subject.concat "hi there!"
 
-        subject.path.open(&:read).should match(%r/#{Regexp.escape <<-CONTENT}$/)
+        subject.path.open(&:read).should == <<-CONTENT
+# Set color
+[color]
+  ui = auto
+
+# begin dotfiles other additions
+[core]
+  excludesfile = .gitexcludes
+# end dotfiles other additions
 # begin dotfiles custom additions
 hi there!
 # end dotfiles custom additions
@@ -269,28 +305,82 @@ hi there!
       it "should write concated string to file while ignoring other additions" do
         subject.concat "hi there!"
 
-        content = subject.path.open(&:read)
-        content.should match(%r/#{Regexp.escape <<-CUSTOM}$/)
+        subject.path.open(&:read).should == <<-CONTENT
+# Set color
+[color]
+  ui = auto
+
 # begin dotfiles custom additions
 [alias]
   lp = log --patch --decorate
   lg = log --graph --pretty=oneline --abbrev-commit
 hi there!
 # end dotfiles custom additions
-        CUSTOM
-        content.should match(%r/#{Regexp.escape <<-OTHER}$/)
+
 # begin dotfiles other additions
 [core]
   excludesfile = .gitexcludes
 # end dotfiles other additions
-        OTHER
+        CONTENT
       end
     end
   end
 
-  # clear
-  describe "remove_content" do
-    it "should remove all managed content from the file"
+  describe "#clear" do
+    context "with no existing additions" do
+      include_context "file without additions"
+
+      it "should not change the file" do
+        old_content = subject.path.open(&:read)
+        subject.clear
+        subject.path.open(&:read).should == old_content
+      end
+    end
+
+    context "with existing additions" do
+      include_context "file with additions"
+
+      it "should remove additions" do
+        subject.clear
+
+        subject.path.open(&:read).should == <<-CONTENT
+# Set color
+[color]
+  ui = auto
+
+        CONTENT
+      end
+    end
+
+    context "with other named additions" do
+      include_context "file with other named additions"
+
+      it "should not change the file" do
+        old_content = subject.path.open(&:read)
+        subject.clear
+        subject.path.open(&:read).should == old_content
+      end
+    end
+
+    context "with several named additions" do
+      include_context "file with several named additions"
+
+      it "should clear correct additions" do
+        subject.clear
+
+        subject.path.open(&:read).should == <<-CONTENT
+# Set color
+[color]
+  ui = auto
+
+
+# begin dotfiles other additions
+[core]
+  excludesfile = .gitexcludes
+# end dotfiles other additions
+        CONTENT
+      end
+    end
   end
 
   it "should backup files"
