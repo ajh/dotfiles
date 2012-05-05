@@ -44,7 +44,7 @@ module Dotfiles
     # = Issues
     #
     # * This doesn't allow control over where the changes go.
-    class Additions < ObservableString
+    class Additions < String
       attr_reader :path, :name, :comment_token
 
       def initialize(path, name, comment_token)
@@ -52,20 +52,38 @@ module Dotfiles
         @comment_token = comment_token
         @name = name
 
-        replace self.class.load(self)
-        add_observer self.class
+        reload
       end
 
-      def self.load(addition)
-        File.open addition.path do |f|
+      # list of methods that modify the string in place
+      MUTATORS = (
+        String.public_instance_methods.sort.select {|m| m.to_s.match(%r/[!]$/) && m != :!} \
+        + %w(<< concat []= clear replace insert prepend).map(&:to_sym)
+      ).freeze
+
+      MUTATORS.each do |name|
+        module_eval <<-ALIAS
+          def #{name}(*args, &block)
+            output = super *args, &block
+            flush
+            output
+          end
+        ALIAS
+      end
+
+      private
+
+      # Replace value from file, or set to empty string if file has no value.
+      def reload
+        string = File.open(path) do |f|
           start_reading = false
           string = ""
 
           f.each do |line|
-            if line =~ %r/#{Regexp.escape begin_comment_line(addition)}/
+            if line =~ %r/#{Regexp.escape begin_comment_line}/
               start_reading = true
 
-            elsif line =~ %r/#{Regexp.escape end_comment_line(addition)}/
+            elsif line =~ %r/#{Regexp.escape end_comment_line}/
               break
 
             elsif start_reading
@@ -75,27 +93,29 @@ module Dotfiles
 
           string
         end
+
+        replace string
       end
 
       # Write changes to file
-      def self.update(addition)
+      def flush
         Dir.mktmpdir do |dir|
           dir = Pathname.new dir
-          copy_path = dir.join(addition.path.basename)
-          FileUtils.cp addition.path, copy_path
+          copy_path = dir.join(path.basename)
+          FileUtils.cp path, copy_path
 
           copy_path.open('r') do |reader|
-            addition.path.open('w') do |writer|
+            path.open('w') do |writer|
               inside_additions = false
               found_additions = false
               already_wrote_additions = false
 
               reader.each do |line|
-                if line =~ %r/#{Regexp.escape begin_comment_line(addition)}/
+                if line =~ %r/#{Regexp.escape begin_comment_line}/
                   inside_additions = found_additions = true
                   writer.write line
 
-                elsif line =~ %r/#{Regexp.escape end_comment_line(addition)}/
+                elsif line =~ %r/#{Regexp.escape end_comment_line}/
                   inside_additions = false
                   writer.write line
 
@@ -104,7 +124,7 @@ module Dotfiles
 
                 elsif inside_additions
                   already_wrote_additions = true
-                  writer.write addition.to_s.chomp + "\n"
+                  writer.write to_s.chomp + "\n"
 
                 else
                   writer.write line
@@ -112,24 +132,22 @@ module Dotfiles
               end
 
               if !found_additions
-                writer.write begin_comment_line(addition)
-                writer.write addition.to_s.chomp + "\n"
-                writer.write end_comment_line(addition)
+                writer.write begin_comment_line
+                writer.write to_s.chomp + "\n"
+                writer.write end_comment_line
               end
             end
           end
         end
       end
 
-      private
+      def begin_comment_line
+        "#{comment_token} begin dotfiles #{name} additions\n"
+      end
 
-        def self.begin_comment_line(addition)
-          "#{addition.comment_token} begin dotfiles #{addition.name} additions\n"
-        end
-
-        def self.end_comment_line(addition)
-          "#{addition.comment_token} end dotfiles #{addition.name} additions\n"
-        end
+      def end_comment_line
+        "#{comment_token} end dotfiles #{name} additions\n"
+      end
     end
   end
 end
