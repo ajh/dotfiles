@@ -383,6 +383,10 @@ hi there!
     end
   end
 
+  # One way to do this would be to:
+  # * only backup once per Addition instance
+  # * copy the original file with a timestamp or uuid suffix
+  # * include the work dotfiles in the suffix
   it "should backup files"
 
 end
