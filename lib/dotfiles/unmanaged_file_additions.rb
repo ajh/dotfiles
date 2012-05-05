@@ -109,29 +109,30 @@ module Dotfiles
               inside_additions = false
               found_additions = false
               already_wrote_additions = false
+              empty_additions = empty?
 
               reader.each do |line|
                 if line =~ %r/#{Regexp.escape begin_comment_line}/
                   inside_additions = found_additions = true
-                  writer.write line
+                  writer.write line unless empty_additions
 
                 elsif line =~ %r/#{Regexp.escape end_comment_line}/
                   inside_additions = false
-                  writer.write line
+                  writer.write line unless empty_additions
 
                 elsif inside_additions && already_wrote_additions
                   next
 
                 elsif inside_additions
                   already_wrote_additions = true
-                  writer.write to_s.chomp + "\n"
+                  writer.write to_s.chomp + "\n" unless empty_additions
 
                 else
                   writer.write line
                 end
               end
 
-              if !found_additions
+              if !found_additions && !empty_additions
                 writer.write begin_comment_line
                 writer.write to_s.chomp + "\n"
                 writer.write end_comment_line
