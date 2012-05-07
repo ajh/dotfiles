@@ -1,5 +1,7 @@
 require 'rake/testtask'
 require 'pathname'
+require 'shellwords'
+
 require Pathname.new(__FILE__).dirname.join('lib', 'dotfiles')
 
 Dotfiles.force = true if %w(true 1 yes).include?(ENV['force'])
