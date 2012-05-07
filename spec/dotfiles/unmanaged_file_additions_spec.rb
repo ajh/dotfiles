@@ -389,4 +389,6 @@ hi there!
   # * include the work dotfiles in the suffix
   it "should backup files"
 
+  it "should print output when debug is true"
+
 end

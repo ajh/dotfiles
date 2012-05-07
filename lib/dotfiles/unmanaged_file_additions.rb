@@ -14,36 +14,36 @@ module Dotfiles
     #
     # = Example
     #
-    #   changes = Dotfiles::UnmanagedFile::Changes.new '~/.bashrc', :comment_token => '#'
-    #   changes.to_s => '' # no changes yet
+    #   additions = Dotfiles::UnmanagedFile::Additions.new '.bashrc', 'bash', '#'
+    #   additions.to_s => '' # no additions yet
     #
     #   # add some lines to ~/.bashrc
-    #   changes += <<-SOURCE
+    #   additions += <<-SOURCE
     #   for rc in $HOME/.bash/*.sh; do
     #     source $rc
     #   done
     #   SOURCE
     #
-    #   changes.to_s => 'for rc in...'
+    #   additions.to_s => 'for rc in...'
     #
-    #   changes.clear
-    #   changes.to_s => ''
+    #   additions.clear
+    #   additions.to_s => ''
     #
-    # = How changes are tracked
+    # = How additions are tracked
     #
-    # Comment blocks are created above and below the changes so they can
+    # Comment blocks are created above and below the additions so they can
     # be identifed at a later time. This is why the comment token needs
     # to be provided. Config files without a comment syntax won't work.
     #
     # = Other features
     #
-    # Changes can be named by passing a name option to new. Named
-    # changes are managed separately from other named or unnamed
-    # changes.
+    # additions can be named by passing a name option to new. Named
+    # additions are managed separately from other named or unnamed
+    # additions.
     #
     # = Issues
     #
-    # * This doesn't allow control over where the changes go.
+    # * This doesn't allow control over where the additions go.
     class Additions < String
       attr_reader :path, :name, :comment_token
 
@@ -57,7 +57,7 @@ module Dotfiles
 
       # list of methods that modify the string in place
       MUTATORS = (
-        String.public_instance_methods.sort.select {|m| m.to_s.match(%r/[!]$/) && m != :!} \
+        String.public_instance_methods.sort.select {|m| m.to_s.match(%r/.[!]$/)} \
         + %w(<< concat []= clear replace insert prepend).map(&:to_sym)
       ).freeze
 

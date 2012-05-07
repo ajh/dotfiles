@@ -44,6 +44,15 @@ module Hooks
       end
   end
 
+  module Bash
+    def self.install
+      a = Dotfiles::UnmanagedFile::Additions.new Pathname.new(ENV['HOME']).join('.bashrc'), 'bash', '#'
+      a.replace <<-SOURCE
+for rc in $HOME/.bash.d/*.sh; do source $rc; done
+      SOURCE
+    end
+  end
+
   # Calls a install hook if one exists for group_name
   def self.install(group_name)
     Hooks.const_defined?(group_name.to_s.capitalize) or return
