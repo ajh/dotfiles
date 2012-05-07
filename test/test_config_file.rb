@@ -2,17 +2,17 @@ require File.join(File.dirname(__FILE__), 'helper')
 require 'fileutils'
 require 'find'
 
-module DotFiles
+module Dotfiles
   class ConfigFileTest < ::Test::Unit::TestCase
 
     def setup
-      DotFiles.debug = false
+      Dotfiles.debug = false
       setup_fixtures
     end
 
     def test_install_should_symlink_dot_rc_files
       config = ConfigFile.new File.join(fixture_project_dir, 'dot_thisrc'),
-        :project_dir => fixture_project_dir, 
+        :project_dir => fixture_project_dir,
         :home_dir => fixture_home_dir
 
       config.install fixture_home_dir
@@ -21,7 +21,7 @@ module DotFiles
 
     def test_install_should_create_directories_before_linking_deep_files
       config = ConfigFile.new File.join(@fixture_project_dir, 'dot_this', 'settings'),
-        :project_dir => fixture_project_dir, 
+        :project_dir => fixture_project_dir,
         :home_dir => fixture_home_dir
 
       config.install fixture_home_dir
@@ -30,7 +30,7 @@ module DotFiles
 
     def test_install_should_raise_if_file_already_exists
       config = ConfigFile.new "#{fixture_project_dir}/dot_this/settings",
-        :project_dir => fixture_project_dir, 
+        :project_dir => fixture_project_dir,
         :home_dir => fixture_home_dir
       install_file = "#{fixture_home_dir}/.this/settings"
       FileUtils.mkdir_p File.dirname("#{fixture_home_dir}/.this/settings")
@@ -40,11 +40,11 @@ module DotFiles
     end
 
     def test_install_should_replace_existing_file_if_force_option_is_set
-      previous_force_value = DotFiles.force
-      DotFiles.force = true
-      
+      previous_force_value = Dotfiles.force
+      Dotfiles.force = true
+
       config = ConfigFile.new "#{fixture_project_dir}/dot_this/settings",
-        :project_dir => fixture_project_dir, 
+        :project_dir => fixture_project_dir,
         :home_dir => fixture_home_dir
       install_file = "#{fixture_home_dir}/.this/settings"
       FileUtils.mkdir_p File.dirname("#{fixture_home_dir}/.this/settings")
@@ -52,7 +52,7 @@ module DotFiles
 
       assert_nothing_raised { config.install fixture_home_dir }
     ensure
-      DotFiles.force = previous_force_value  
+      Dotfiles.force = previous_force_value
     end
 
     def teardown
@@ -74,7 +74,7 @@ module DotFiles
         FileUtils.mkdir_p File.join(@fixture_project_dir, 'dot_this')
         FileUtils.touch File.join(@fixture_project_dir, 'dot_this', 'settings')
         FileUtils.touch File.join(@fixture_project_dir, 'dot_this', 'alias')
-        
+
         FileUtils.mkdir_p File.join(@fixture_project_dir, 'dot_that', 'plugins')
         FileUtils.touch File.join @fixture_project_dir, 'dot_that', 'plugins', 'foo'
         FileUtils.touch File.join @fixture_project_dir, 'dot_that', 'plugins', 'bar'

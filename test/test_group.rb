@@ -2,12 +2,12 @@ require File.join(File.dirname(__FILE__), 'helper')
 require 'fileutils'
 require 'find'
 
-module DotFiles
+module Dotfiles
   class SectionTest < ::Test::Unit::TestCase
 
     def setup
       setup_fixtures
-      DotFiles.debug = false
+      Dotfiles.debug = false
     end
 
     def test_new_should_take_name_from_directory
@@ -17,7 +17,7 @@ module DotFiles
     def test_new_should_find_files_and_build_config_files
       group = Group.new fixture_group_dir
       assert_equal \
-        %w(dot_thingrc dot_thing/settings).collect{|f| "#{fixture_group_dir}/#{f}"}.sort, 
+        %w(dot_thingrc dot_thing/settings).collect{|f| "#{fixture_group_dir}/#{f}"}.sort,
         group.files.collect(&:project_file).sort
 
       assert_equal [fixture_group_dir], group.files.collect(&:project_dir).uniq
@@ -61,7 +61,6 @@ module DotFiles
         @fixture_dir = File.join '/tmp', "dotfiles_#{$$}"
         @fixture_group_dir = FileUtils.mkdir_p File.join(@fixture_dir, "groups/thing")
         @fixture_install_dir = FileUtils.mkdir_p File.join(@fixture_dir, "home")
-
 
         FileUtils.touch File.join(@fixture_group_dir, 'dot_thingrc')
         FileUtils.mkdir_p File.join(@fixture_group_dir, 'dot_thing')

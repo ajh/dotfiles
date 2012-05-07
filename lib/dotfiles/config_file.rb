@@ -1,5 +1,4 @@
 require 'fileutils'
-require File.join(File.dirname(__FILE__) + '/dot_files')
 
 # A dot file represents a config file that is included in this project. 
 #
@@ -7,7 +6,7 @@ require File.join(File.dirname(__FILE__) + '/dot_files')
 #
 # To avoid having hidden files in the git project, a file that gets installed
 # as .vimrc for example appears as dot_vimrc in the project dir.
-module DotFiles
+module Dotfiles
   class ConfigFile
     attr_reader :project_file, :project_dir, :install_dir, :install_file
 
@@ -30,7 +29,7 @@ module DotFiles
 
       def mkdir_p(dir)
         return if File.directory?(dir)
-        puts "mkdir_p #{dir}" if DotFiles.debug
+        puts "mkdir_p #{dir}" if Dotfiles.debug
         FileUtils.mkdir_p dir
       end
 
@@ -39,14 +38,14 @@ module DotFiles
         if File.symlink?(dest) and File.readlink(dest) == src
           return
         elsif File.file?(dest)
-          if DotFiles.force
+          if Dotfiles.force
             FileUtils.rm dest
           else
             raise RuntimeError.new("file #{dest} already exists") if File.file?(dest)
           end
         end
 
-        puts "ln_s #{src} #{dest}" if DotFiles.debug
+        puts "ln_s #{src} #{dest}" if Dotfiles.debug
         FileUtils.ln_s src, dest
       end
   end

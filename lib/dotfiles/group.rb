@@ -1,6 +1,6 @@
-require File.join(File.dirname(__FILE__) + '/config_file')
+require 'find'
 
-module DotFiles
+module Dotfiles
   class Group
     attr_reader :name
     attr_reader :files

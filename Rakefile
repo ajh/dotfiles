@@ -1,12 +1,9 @@
 require 'rake/testtask'
-require 'find'
 require 'pathname'
-require 'shellwords'
+require Pathname.new(__FILE__).dirname.join('lib', 'dotfiles')
 
-require Pathname.new(__FILE__).dirname.join('rake/lib/group')
-
-DotFiles.force = true if %w(true 1 yes).include?(ENV['force'])
-groups = Dir.glob("configs/*").collect { |f| DotFiles::Group.new(f) if File.directory?(f) }
+Dotfiles.force = true if %w(true 1 yes).include?(ENV['force'])
+groups = Dir.glob("configs/*").collect { |f| Dotfiles::Group.new(f) if File.directory?(f) }
 
 # Add a module named the same as a group name and define an .install method to
 # have the method called when the group is installed.
@@ -72,6 +69,6 @@ task :default => :install
 
 desc 'run tests against this rake script'
 Rake::TestTask.new('test') do |t|
-  t.pattern = 'rake/test/test_*.rb'
+  t.pattern = 'test/test_*.rb'
   t.verbose = true
 end
