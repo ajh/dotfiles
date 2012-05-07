@@ -1,11 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-<<<<<<< HEAD
-    metaclass (0.0.1)
-    mocha (0.10.5)
-      metaclass (~> 0.0.1)
-=======
     bunny (0.7.9)
     chef (0.10.8)
       bunny (>= 0.6.0)
@@ -65,15 +60,10 @@ GEM
       polyglot (>= 0.3.1)
     uuidtools (2.1.2)
     yajl-ruby (1.1.0)
->>>>>>> 611d263... Add specs and start working additions class
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-<<<<<<< HEAD
-  mocha
-=======
   chef
   rspec
->>>>>>> 611d263... Add specs and start working additions class
