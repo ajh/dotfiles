@@ -47,3 +47,6 @@ endif
 
 "Configure vroom to turn off rspec colors
 let g:vroom_use_colors=0
+
+"setup markdown filetype using my naming convention
+:autocmd BufNewFile,BufRead *.md.txt set filetype=markdown
