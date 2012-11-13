@@ -4,3 +4,6 @@
 [submodule "configs/vim/dot_janus/vim-colors-solarized"]
 	path = configs/vim/dot_janus/vim-colors-solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "configs/vim/dot_janus/tabular"]
+	path = configs/vim/dot_janus/tabular
+	url = https://github.com/godlygeek/tabular.git
