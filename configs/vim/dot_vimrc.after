@@ -14,7 +14,7 @@ noremap <C-J> 10j
 
 "purty colors
 set background=dark
-colorscheme solarized
+"colorscheme solarized
 
 "Window shortcuts
 map <leader>v :vsp<CR>
