@@ -4,12 +4,12 @@ function ps1_git {
 }
 
 ps1="\[\e[0;32m\]"                         # colored text
-ps1=$ps1"\u@\h"                            # user@host
+ps1=$ps1"\h"                               # hostname
 ps1=$ps1" … "
 ps1=$ps1"\$(rvm-prompt v)\$(rvm-prompt g)" # 1.9.3@gemset
 ps1=$ps1"\$(ps1_git)"                      # git branch
 ps1=$ps1" … "
-ps1=$ps1"\w"                               # relative working dir
+ps1=$ps1"\W"                               # relative working dir
 ps1=$ps1"\\n"                              # new line
 ps1=$ps1"\$"                               # $
 ps1=$ps1" "                                # space
