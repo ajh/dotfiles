@@ -11,3 +11,4 @@ alias aspen-rebuild="rails-rebuild && echo 'bundle exec rake --trace ts:rebuild 
 # Can be used like: for i in $APP_PATHS; do echo $i done
 APP_PATHS="~/devel/aspen ~/devel/balsa ~/devel/cacao ~/devel/doha ~/devel/poui ~/devel/reverse_proxy ~/devel/saba ~/devel/snowbell"
 
+alias cdpwd="cd $(pwd)" # useful when pwd is a symlink like /u/apps/app_name/current
