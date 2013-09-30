@@ -48,3 +48,8 @@ let g:vroom_use_colors=0
 
 "Configure Rails to not build tags for java
 let g:rails_ctags_arguments='--languages=-javascript --languages=-java --exclude=vendor'
+
+"golang plugins
+if exists("$GOROOT")
+  set runtimepath+=$GOROOT/misc/vim
+endif
