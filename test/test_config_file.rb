@@ -67,8 +67,8 @@ module Dotfiles
 
       def setup_fixtures
         @fixture_dir = File.join '/tmp', "dotfiles_#{$$}"
-        @fixture_project_dir = FileUtils.mkdir_p File.join(@fixture_dir, "project_dir")
-        @fixture_home_dir = FileUtils.mkdir_p File.join(@fixture_dir, "home_dir")
+        @fixture_project_dir = FileUtils.mkdir_p(File.join(@fixture_dir, "project_dir")).first
+        @fixture_home_dir = FileUtils.mkdir_p(File.join(@fixture_dir, "home_dir")).first
 
         FileUtils.touch File.join(@fixture_project_dir, 'dot_thisrc')
         FileUtils.mkdir_p File.join(@fixture_project_dir, 'dot_this')

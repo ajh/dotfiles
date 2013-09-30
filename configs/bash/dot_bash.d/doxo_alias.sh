@@ -2,7 +2,7 @@
 alias be="bundle exec"
 
 # rails
-alias rails-rebuild="echo 'bundle exec rake --trace db:drop db:create db:schema:load db:fixtures:load FIXTURES_PATH=spec/fixtures log:clear db:test:prepare && rm -rf public/system/*' | bash -x"
+alias rails-rebuild="echo 'bundle exec rake --trace db:drop db:create db:schema:load db:fixtures:load FIXTURES_PATH=spec/fixtures log:clear && rake db:test:prepare && rm -rf public/system/*' | bash -x"
 alias rails-restart="touch tmp/restart.txt"
 
 # aspen

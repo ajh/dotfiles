@@ -11,7 +11,7 @@ module Dotfiles
     end
 
     def test_new_should_take_name_from_directory
-      assert_equal 'vim', Group.new('groups/vim').name
+      assert_equal 'vim', Group.new('configs/vim').name
     end
 
     def test_new_should_find_files_and_build_config_files
@@ -59,8 +59,8 @@ module Dotfiles
 
       def setup_fixtures
         @fixture_dir = File.join '/tmp', "dotfiles_#{$$}"
-        @fixture_group_dir = FileUtils.mkdir_p File.join(@fixture_dir, "groups/thing")
-        @fixture_install_dir = FileUtils.mkdir_p File.join(@fixture_dir, "home")
+        @fixture_group_dir = FileUtils.mkdir_p(File.join(@fixture_dir, "groups/thing")).first
+        @fixture_install_dir = FileUtils.mkdir_p(File.join(@fixture_dir, "home")).first
 
         FileUtils.touch File.join(@fixture_group_dir, 'dot_thingrc')
         FileUtils.mkdir_p File.join(@fixture_group_dir, 'dot_thing')
