@@ -40,11 +40,6 @@ map <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 "Use my aliased grep that excludes svn directores amoung other things
 "set grepprg=rails-grep\ --line-number\ $*\ /dev/null
 
-if janus#is_module_loaded("buffergator")
-  nmap <leader>b :BuffergatorToggle<CR>
-  nmap <leader>t :BuffergatorTabsToggle<CR>
-endif
-
 "Configure vroom to turn off rspec colors
 let g:vroom_use_colors=0
 
@@ -53,6 +48,3 @@ let g:vroom_use_colors=0
 
 "Configure Rails to not build tags for java
 let g:rails_ctags_arguments='--languages=-javascript --languages=-java --exclude=vendor'
-
-"configure buffergator
-let g:buffergator_sort_regime='filepath'
