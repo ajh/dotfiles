@@ -6,3 +6,9 @@ rvm_project_rvmrc_default=1
 
 # create gemsets automatically
 rvm_gemset_create_on_use_flag=1
+
+if [[ `uname` == 'Darwin' ]]; then
+  export CFLAGS="-O2 -arch x86_64"
+  export LDFLAGS="-L/opt/local/lib"
+  export CPPFLAGS="-I/opt/local/include"
+fi
