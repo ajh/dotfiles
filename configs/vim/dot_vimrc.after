@@ -53,3 +53,5 @@ let g:rails_ctags_arguments='--languages=-javascript --languages=-java --exclude
 if exists("$GOROOT")
   set runtimepath+=$GOROOT/misc/vim
 endif
+
+call janus#add_mapping("nerdtree", "map", "<leader>f", ":NERDTreeFind<CR>")
