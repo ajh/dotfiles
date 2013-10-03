@@ -1,3 +1,5 @@
+" Basic Settings -------------------- {{{
+
 "allow hidden buffers which does stuff like preserve undo history
 set hidden
 
@@ -7,18 +9,31 @@ set history=1000
 "set up bash-style tab-completion
 set wildmode=list:longest
 
-"Some shortcuts
-" * scroll up and down 10 lines at a time
-noremap <C-K> 10k
-noremap <C-J> 10j
-
 "purty colors
 set background=dark
 "colorscheme solarized
 
+"setup folding for vim files
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
+" }}}
+
+" Some shortcuts -------------------- {{{
+
+" * scroll up and down 10 lines at a time
+noremap <C-K> 10k
+noremap <C-J> 10j
+
 "Window shortcuts
 map <leader>v :vsp<CR>
 map <leader>s :sp<CR>
+
+" }}}
+
+" Some Functions -------------------- {{{
 
 "Remove whitespace from end of lines
 function! Preserve(command)
@@ -34,14 +49,18 @@ function! Preserve(command)
 endfunction
 map <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 
-"Have :!{cmd} use an interactive shell so I have my shopts and aliases
-"set shellcmdflag=-ic
+" }}}
 
-"Use my aliased grep that excludes svn directores amoung other things
-"set grepprg=rails-grep\ --line-number\ $*\ /dev/null
+" Plugin customizations -------------------- {{{
 
 "Configure vroom to turn off rspec colors
 let g:vroom_use_colors=0
+
+call janus#add_mapping("nerdtree", "map", "<leader>f", ":NERDTreeFind<CR>")
+
+" }}}
+
+" Language settings -------------------- {{{
 
 "setup markdown filetype using my naming convention
 :autocmd BufNewFile,BufRead *.md.txt set filetype=markdown
@@ -54,4 +73,4 @@ if exists("$GOROOT")
   set runtimepath+=$GOROOT/misc/vim
 endif
 
-call janus#add_mapping("nerdtree", "map", "<leader>f", ":NERDTreeFind<CR>")
+" }}}
