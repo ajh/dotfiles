@@ -4,3 +4,5 @@ let mapleader = ","
 "Buffergator customizations
 let g:buffergator_sort_regime="filepath"
 let g:buffergator_viewport_split_policy="B"
+
+call janus#disable_plugin('rspec')"
