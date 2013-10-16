@@ -1,8 +1,20 @@
 "Use comma instead of backslash for leader commands
 let mapleader = ","
 
+"NERDTree  customizations
+let NERDTreeHijackNetrw = 1
+
 "Buffergator customizations
 let g:buffergator_sort_regime="filepath"
 let g:buffergator_viewport_split_policy="B"
 
-call janus#disable_plugin('rspec')"
+"CtrlP customizations
+let g:ctrlp_map = '<C-P><C-P>'
+
+call janus#disable_plugin('rspec')
+call janus#disable_plugin('vroom')
+call janus#disable_plugin('dispatch')
+call janus#disable_plugin('multiple-cursors')
+call janus#disable_plugin('narrowregion')
+call janus#disable_plugin('snipmate')
+call janus#disable_plugin('vimwiki')

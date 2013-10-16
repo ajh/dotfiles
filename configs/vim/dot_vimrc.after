@@ -53,10 +53,31 @@ map <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 
 " Plugin customizations -------------------- {{{
 
-"Configure vroom to turn off rspec colors
-let g:vroom_use_colors=0
+" buffergator is <M-F>
+call janus#add_mapping("buffergator", "nnoremap", "ƒ", ":BuffergatorToggle<CR>")
+call janus#add_mapping("buffergator", "nnoremap", "<M-F>", ":BuffergatorToggle<CR>")
 
-call janus#add_mapping("nerdtree", "map", "<leader>f", ":NERDTreeFind<CR>")
+" ctrlp prefix is <C-P>
+" Note: <C-P><C-P> is set in vimrc.before
+call janus#add_mapping("ctrlp", "nnoremap", "<C-P><C-B>", ":CtrlPBuffer<CR>")
+
+" gundo is <M-G>
+call janus#add_mapping("gundo", "nnoremap", "©", ":GundoToggle<CR>")
+call janus#add_mapping("gundo", "nnoremap", "<M-G>", ":GundoToggle<CR>")
+
+" nerdtree prefix is <M-R>
+call janus#add_mapping("nerdtree", "nnoremap", "®®", ":NERDTreeToggle<CR>")
+call janus#add_mapping("nerdtree", "nnoremap", "<M-R><M-R>", ":NERDTreeToggle<CR>")
+call janus#add_mapping("nerdtree", "nnoremap", "®ƒ", ":NERDTreeFind<CR>")
+call janus#add_mapping("nerdtree", "nnoremap", "<M-R><M-F>", ":NERDTreeFind<CR>")
+
+" tagbar is <M-A>
+call janus#add_mapping("tagbar", "nnoremap", "å", ":TagbarToggle<CR>")
+call janus#add_mapping("tagbar", "nnoremap", "<M-A>", ":TagbarToggle<CR>")
+
+" zoomwin is <C-W><C-M> to be beside the other window commands (See :help
+" CTRL-W)
+call janus#add_mapping("zoomwin", "nnoremap", "<C-W><C-M>", ":ZoomWin<CR>")
 
 " }}}
 
