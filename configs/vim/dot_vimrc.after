@@ -70,6 +70,7 @@ call janus#add_mapping("nerdtree", "nnoremap", "®®", ":NERDTreeToggle<CR>")
 call janus#add_mapping("nerdtree", "nnoremap", "<M-R><M-R>", ":NERDTreeToggle<CR>")
 call janus#add_mapping("nerdtree", "nnoremap", "®ƒ", ":NERDTreeFind<CR>")
 call janus#add_mapping("nerdtree", "nnoremap", "<M-R><M-F>", ":NERDTreeFind<CR>")
+unmap <leader>n
 
 " tagbar is <M-A>
 call janus#add_mapping("tagbar", "nnoremap", "å", ":TagbarToggle<CR>")

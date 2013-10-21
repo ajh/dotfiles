@@ -2,11 +2,13 @@
 let mapleader = ","
 
 "NERDTree  customizations
+" Doesn't work thanks to janus overwriting this
 let NERDTreeHijackNetrw = 1
 
 "Buffergator customizations
 let g:buffergator_sort_regime="filepath"
 let g:buffergator_viewport_split_policy="B"
+let g:buffergator_suppress_keymaps=1
 
 "CtrlP customizations
 let g:ctrlp_map = '<C-P><C-P>'
