@@ -71,6 +71,7 @@ unmap <leader>n
 " tagbar is <M-A>
 call janus#add_mapping("tagbar", "nnoremap", "å", ":TagbarToggle<CR>")
 call janus#add_mapping("tagbar", "nnoremap", "<M-A>", ":TagbarToggle<CR>")
+let g:tagbar_sort=0 " sort methods by file order, not name
 
 " zoomwin is <C-W><C-M> to be beside the other window commands (See :help
 " CTRL-W)
