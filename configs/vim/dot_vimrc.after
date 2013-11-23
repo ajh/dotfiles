@@ -27,10 +27,6 @@ augroup END
 noremap <C-K> 10k
 noremap <C-J> 10j
 
-"Window shortcuts
-map <leader>v :vsp<CR>
-map <leader>s :sp<CR>
-
 " }}}
 
 " Some Functions -------------------- {{{
