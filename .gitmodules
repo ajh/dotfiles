@@ -9,7 +9,7 @@
 	url = https://github.com/godlygeek/tabular.git
 [submodule "configs/vim/dot_janus/rspec-tools"]
 	path = configs/vim/dot_janus/rspec-tools
-	url = git@github.com:ajh/vim-rspec-tools.git
+	url = https://github.com/ajh/vim-rspec-tools.git
 [submodule "configs/vim/dot_janus/inflector"]
 	path = configs/vim/dot_janus/inflector
-	url = git@github.com:ajh/vim-inflector.git
+	url = https://github.com/ajh/vim-inflector.git
