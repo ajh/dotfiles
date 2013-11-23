@@ -13,3 +13,6 @@
 [submodule "configs/vim/dot_janus/inflector"]
 	path = configs/vim/dot_janus/inflector
 	url = https://github.com/ajh/vim-inflector.git
+[submodule "configs/vim/dot_janus/misc"]
+	path = configs/vim/dot_janus/misc
+	url = https://github.com/ajh/vim-misc.git
