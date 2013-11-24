@@ -25,10 +25,10 @@ PS1="\[\e[0;32m\]"            # colored text
 PS1=$PS1"\h"                  # hostname
 PS1=$PS1"\$(ps1_rvm)"         # 1.9.3@gemset
 PS1=$PS1"\$(ps1_git)"         # git branch
-PS1=$PS1"\$(ps1_time_of_day)" # time of day
+#PS1=$PS1"\$(ps1_time_of_day)" # time of day
 PS1=$PS1" \W"                 # relative working dir
 PS1=$PS1"\\n"                 # new line
-PS1=$PS1`echo -e '\u266A'`    # $
+PS1=$PS1"\$"                  # $
 PS1=$PS1" "                   # space
 PS1=$PS1"\[\e[0m\]"           # reset color
 export PS1
