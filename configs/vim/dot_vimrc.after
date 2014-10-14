@@ -77,6 +77,9 @@ let g:tagbar_sort=0 " sort methods by file order, not name
 " CTRL-W)
 call janus#add_mapping("zoomwin", "nnoremap", "<C-W><C-M>", ":ZoomWin<CR>")
 
+" syntastic uses rubocop for ruby
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+
 " }}}
 
 " Language settings -------------------- {{{
