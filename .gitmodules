@@ -16,3 +16,6 @@
 [submodule "configs/vim/dot_janus/misc"]
 	path = configs/vim/dot_janus/misc
 	url = https://github.com/ajh/vim-misc.git
+[submodule "configs/vim/dot_janus/rust"]
+	path = configs/vim/dot_janus/rust
+	url = https://github.com/wting/rust.vim.git
