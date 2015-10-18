@@ -19,17 +19,18 @@ module Hooks
 
   module Git
     CONFIG = {
-      'alias.a' => 'add',
-      'alias.ci' => 'commit',
-      'alias.d' => 'diff',
-      'alias.dc' => 'diff --cached',
-      'alias.ld' => 'log --left-right --graph --cherry-pick --oneline', # list which commits differ between branches like: git ld master...feature_branch
-      'alias.lg' => 'log --graph --pretty=oneline --abbrev-commit',
-      'alias.lp' => 'log --patch --decorate',
-      'alias.st' => 'status',
-      'color.ui' => 'auto',
+      'alias.a'           => 'add',
+      'alias.ci'          => 'commit',
+      'alias.co'          => 'checkout',
+      'alias.d'           => 'diff',
+      'alias.dc'          => 'diff --cached',
+      'alias.ld'          => 'log --left-right --graph --cherry-pick --oneline', # list which commits differ between branches like: git ld master...feature_branch
+      'alias.lg'          => 'log --graph --pretty=oneline --abbrev-commit',
+      'alias.lp'          => 'log --patch --decorate',
+      'alias.st'          => 'status',
+      'color.ui'          => 'auto',
       'core.excludesfile' => '~/.gitexcludes',
-      #'push.default' => 'upstream', # ubuntu lucid version of git doesn't support this option
+      'push.default'      => 'simple',
     }
 
     def self.install
