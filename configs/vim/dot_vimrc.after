@@ -78,7 +78,11 @@ let g:tagbar_sort=0 " sort methods by file order, not name
 call janus#add_mapping("zoomwin", "nnoremap", "<C-W><C-M>", ":ZoomWin<CR>")
 
 " syntastic uses rubocop for ruby
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+if $RUBOCOP
+  let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+else
+  let g:syntastic_ruby_checkers = ['mri']
+endif
 
 " }}}
 

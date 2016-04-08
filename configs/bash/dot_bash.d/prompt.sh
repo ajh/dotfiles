@@ -4,10 +4,10 @@ function ps1_git {
   echo " "${ref#refs/heads/}
 }
 
-function ps1_rvm {
-  local value
-  value=$(rvm-prompt i v g) || return # 1.9.3-p303@global
-  echo " "${value}
+function ps1_ruby {
+  local version
+  version=$(ruby --version | cut -d ' ' -f 1,2 | tr ' ' -) || return
+  echo " "${version}
 }
 
 function ps1_time_of_day {
@@ -23,8 +23,8 @@ function ps1_time_of_day {
 
 PS1="\[\e[0;32m\]"            # colored text
 PS1=$PS1"\h"                  # hostname
-PS1=$PS1"\$(ps1_rvm)"         # 1.9.3@gemset
 PS1=$PS1"\$(ps1_git)"         # git branch
+PS1=$PS1"\$(ps1_ruby)"        # ruby version
 #PS1=$PS1"\$(ps1_time_of_day)" # time of day
 PS1=$PS1" \W"                 # relative working dir
 PS1=$PS1"\\n"                 # new line
