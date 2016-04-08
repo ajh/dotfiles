@@ -10,6 +10,12 @@ function ps1_ruby {
   echo " "${version}
 }
 
+function ps1_multirust {
+  local value
+  value=$(multirust show-override | grep rustc | cut -d ' ' -f 2) || return
+  echo " "${value}
+}
+
 function ps1_time_of_day {
   local seconds_in_day=$[ \
     (`printf '%(%H)T' -1` * 60 * 60) + \
@@ -21,14 +27,14 @@ function ps1_time_of_day {
   echo " "${dow}${percent}
 }
 
-PS1="\[\e[0;32m\]"            # colored text
-PS1=$PS1"\h"                  # hostname
-PS1=$PS1"\$(ps1_git)"         # git branch
-PS1=$PS1"\$(ps1_ruby)"        # ruby version
+PS1="\[\e[0;32m\]"             # colored text
+PS1=$PS1"\h"                   # hostname
+PS1=$PS1"\$(ps1_git)"          # git branch
+PS1=$PS1"\$(ps1_ruby)"         # ruby version
 #PS1=$PS1"\$(ps1_time_of_day)" # time of day
-PS1=$PS1" \W"                 # relative working dir
-PS1=$PS1"\\n"                 # new line
-PS1=$PS1"\$"                  # $
-PS1=$PS1" "                   # space
-PS1=$PS1"\[\e[0m\]"           # reset color
+PS1=$PS1" \W"                  # relative working dir
+PS1=$PS1"\\n"                  # new line
+PS1=$PS1"\$"                   # $
+PS1=$PS1" "                    # space
+PS1=$PS1"\[\e[0m\]"            # reset color
 export PS1

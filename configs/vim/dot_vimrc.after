@@ -99,4 +99,8 @@ if exists("$GOROOT")
   set runtimepath+=$GOROOT/misc/vim
 endif
 
+"rust tags
+"setlocal tags=rusty-tags.vi;/,path-to-rust-source-code/rusty-tags.vi
+"autocmd BufWrite *.rs :silent !rusty-tags vi
+
 " }}}
