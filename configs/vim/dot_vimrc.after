@@ -56,6 +56,8 @@ call janus#add_mapping("buffergator", "nnoremap", "<M-F>", ":BuffergatorToggle<C
 " ctrlp prefix is <C-P>
 " Note: <C-P><C-P> is set in vimrc.before
 call janus#add_mapping("ctrlp", "nnoremap", "<C-P><C-U>", ":CtrlPBuffer<CR>")
+" this is better for brazil workspaces
+let g:ctrlp_working_path_mode = '0'
 
 " gundo is <M-G>
 call janus#add_mapping("gundo", "nnoremap", "©", ":GundoToggle<CR>")
