@@ -17,3 +17,9 @@ set __fish_git_prompt_char_untrackedfiles '☡'
 set __fish_git_prompt_char_stashstate '↩'
 set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
+
+if [ -e $HOME/.config/fish/config.d ]
+  for f in $HOME/.config/fish/config.d/*.fish
+    source $f
+  end
+end
