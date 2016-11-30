@@ -16,3 +16,6 @@
 [submodule "configs/vim/dot_janus/rust"]
 	path = configs/vim/dot_janus/rust
 	url = https://github.com/rust-lang/rust.vim.git
+[submodule "configs/vim/dot_janus/vim-tmux-navigator"]
+	path = configs/vim/dot_janus/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator.git
