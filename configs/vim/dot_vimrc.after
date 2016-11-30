@@ -23,9 +23,11 @@ augroup END
 
 " Some shortcuts -------------------- {{{
 
-" * scroll up and down 10 lines at a time
-noremap <C-K> 10k
-noremap <C-J> 10j
+" Scroll up and down 10 lines at a time. Disabled because:
+" * it conflicts with vim-tmux-navigator keybindings
+" * it is mostly useful with portrait monitors, which I'm not using lately
+"noremap <C-K> 10k
+"noremap <C-J> 10j
 
 " }}}
 
