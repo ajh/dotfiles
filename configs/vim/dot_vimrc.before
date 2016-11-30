@@ -13,6 +13,9 @@ let g:buffergator_suppress_keymaps=1
 "CtrlP customizations
 let g:ctrlp_map = '<C-P><C-P>'
 
+"Tmux Navigator customizations
+"let g:tmux_navigator_no_mappings = 1
+
 call janus#disable_plugin('rspec')
 call janus#disable_plugin('vroom')
 call janus#disable_plugin('dispatch')

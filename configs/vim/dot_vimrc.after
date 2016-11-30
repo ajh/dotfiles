@@ -86,6 +86,20 @@ else
   let g:syntastic_ruby_checkers = ['mri']
 endif
 
+" Tmux Navigator
+" Can't use janus#add_mapping because it doesn't consider stuff in ~/.janus
+" plugins?
+nnoremap <ESC>h :TmuxNavigateLeft<CR>
+nnoremap <M-H> :TmuxNavigateLeft<CR>
+nnoremap <ESC>j :TmuxNavigateDown<CR>
+nnoremap <M-J> :TmuxNavigateDown<CR>
+nnoremap <ESC>k :TmuxNavigateUp<CR>
+nnoremap <M-K> :TmuxNavigateUp<CR>
+nnoremap <ESC>l :TmuxNavigateRight<CR>
+nnoremap <M-L> :TmuxNavigateRight<CR>
+nnoremap <ESC>^ :TmuxNavigatePrevious<CR>
+nnoremap <M-^> :TmuxNavigatePrevious<CR>
+
 " }}}
 
 " Language settings -------------------- {{{
