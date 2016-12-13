@@ -18,6 +18,11 @@ set __fish_git_prompt_char_stashstate '↩'
 set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
 
+# Neovim terminal mode hack
+if test "$NVIM_LISTEN_ADDRESS" != ""
+  set -u fish_term24bit
+end
+
 if [ -e $HOME/.config/fish/config.d ]
   for f in $HOME/.config/fish/config.d/*.fish
     source $f

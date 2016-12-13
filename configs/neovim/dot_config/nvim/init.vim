@@ -3,6 +3,13 @@
 "Use comma instead of backslash for leader commands
 let mapleader = ","
 set number
+set showcmd
+set showmatch
+set showmode
+set ruler
+set expandtab
+set noerrorbells
+set magic
 
 "setup folding for vim files
 augroup filetype_vim
@@ -41,6 +48,8 @@ let g:tmux_navigator_no_mappings = 1
 "CtrlP customizations
 let g:ctrlp_map = '<C-P><C-P>'
 
+let g:airline_theme='luna'
+
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'christoomey/vim-tmux-navigator'
@@ -48,9 +57,17 @@ Plug 'ddollar/nerdcommenter'
 Plug 'easymotion/vim-easymotion'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'majutsushi/tagbar'
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdtree'
+Plug 'sebastianmarkow/deoplete-rust'
+Plug 'shougo/deoplete.nvim'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-syntastic/syntastic'
 
 call plug#end()
 
