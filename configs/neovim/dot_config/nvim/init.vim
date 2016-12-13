@@ -104,6 +104,11 @@ nnoremap <M-R><M-F> :NERDTreeFind<CR>
 "" CTRL-W)
 "call janus#add_mapping("zoomwin", "nnoremap", "<C-W><C-M>", ":ZoomWin<CR>")
 
+" If C-H doesn't work try:
+"
+"     infocmp $TERM | sed 's/kbs=^[hH]/kbs=\\177/' > $TERM.ti
+"     tic $TERM.ti
+"
 nnoremap <C-H> :TmuxNavigateLeft<cr>
 nnoremap <C-J> :TmuxNavigateDown<cr>
 nnoremap <C-K> :TmuxNavigateUp<cr>
