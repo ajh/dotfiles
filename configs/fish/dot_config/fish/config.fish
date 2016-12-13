@@ -23,8 +23,12 @@ if test "$NVIM_LISTEN_ADDRESS" != ""
   set -u fish_term24bit
 end
 
-if [ -e $HOME/.config/fish/config.d ]
+if [ -d $HOME/.config/fish/config.d ]
   for f in $HOME/.config/fish/config.d/*.fish
     source $f
   end
+end
+
+if [ -d $HOME/bin ]
+  set PATH $HOME/bin $PATH
 end
