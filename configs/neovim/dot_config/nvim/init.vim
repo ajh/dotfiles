@@ -2,14 +2,15 @@
 
 "Use comma instead of backslash for leader commands
 let mapleader = ","
+set expandtab
+set hidden
+set magic
+set noerrorbells
 set number
+set ruler
 set showcmd
 set showmatch
 set showmode
-set ruler
-set expandtab
-set noerrorbells
-set magic
 
 "setup folding for vim files
 augroup filetype_vim
@@ -41,8 +42,11 @@ map <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 "
 "Buffergator customizations
 let g:buffergator_sort_regime="filepath"
-let g:buffergator_viewport_split_policy="B"
 let g:buffergator_suppress_keymaps=1
+let g:buffergator_viewport_split_policy="B"
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#rust#racer_binary='$HOME/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='$HOME/.rust/src'
 let g:tmux_navigator_no_mappings = 1
 
 "CtrlP customizations
@@ -52,6 +56,8 @@ let g:airline_theme='luna'
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ajh/vim-misc'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ddollar/nerdcommenter'
 Plug 'easymotion/vim-easymotion'
@@ -61,7 +67,7 @@ Plug 'majutsushi/tagbar'
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'sebastianmarkow/deoplete-rust'
-Plug 'shougo/deoplete.nvim'
+Plug 'tomtom/tlib_vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
