@@ -120,6 +120,15 @@ nnoremap <C-J> :TmuxNavigateDown<cr>
 nnoremap <C-K> :TmuxNavigateUp<cr>
 nnoremap <C-L> :TmuxNavigateRight<cr>
 
+" deoplete uses TAB (taken from deoplete help file)
+inoremap <silent><expr> <TAB>
+	\ pumvisible() ? "\<C-n>" :
+	\ <SID>check_back_space() ? "\<TAB>" :
+	\ deoplete#mappings#manual_complete()
+	function! s:check_back_space() abort "{{{
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~ '\s'
+	endfunction"}}}
 " }}}
 
 " Language settings -------------------- {{{
