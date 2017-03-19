@@ -1,0 +1,1 @@
+../../vendor/antigen/antigen.zsh

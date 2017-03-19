@@ -58,6 +58,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ajh/vim-misc'
+Plug 'chrisbra/vim-zsh'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ddollar/nerdcommenter'
 Plug 'easymotion/vim-easymotion'
