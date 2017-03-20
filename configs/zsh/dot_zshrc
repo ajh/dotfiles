@@ -1,9 +1,9 @@
+if [ -d "$HOME/.zsh.d/before" ]; then
+  for z in $HOME/.zsh.d/before/*.zsh(n); do source $z; done
+fi
+
 bindkey -v
 export EDITOR=nvim
-
-if [ -d "$HOME/.zsh.d/before" ]; then 
-  for z in $HOME/.zsh.d/before/*.zsh; do source $z; done
-fi
 
 source ~/.antigen.zsh
 
@@ -20,6 +20,6 @@ antigen theme fishy
 
 antigen apply
 
-if [ -d "$HOME/.zsh.d/after" ]; then 
-  for z in $HOME/.zsh.d/after/*.zsh; do source $z; done
+if [ -d "$HOME/.zsh.d/after" ]; then
+  for z in $HOME/.zsh.d/after/*.zsh(n); do source $z; done
 fi
