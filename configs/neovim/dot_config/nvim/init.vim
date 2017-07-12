@@ -45,8 +45,8 @@ let g:buffergator_sort_regime="filepath"
 let g:buffergator_suppress_keymaps=1
 let g:buffergator_viewport_split_policy="B"
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#rust#racer_binary='$HOME/.cargo/bin/racer'
-let g:deoplete#sources#rust#rust_source_path='$HOME/.rust/src'
+let g:deoplete#sources#rust#racer_binary=$HOME . '/.cargo/bin/racer'
+let g:deoplete#sources#rust#rust_source_path=substitute(system("rustc --print sysroot"), '\n\+$', '', '') . '/lib/rustlib/src/rust/src/'
 let g:tmux_navigator_no_mappings = 1
 
 "CtrlP customizations
@@ -58,6 +58,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ajh/vim-misc'
+Plug 'chikamichi/mediawiki.vim'
 Plug 'chrisbra/vim-zsh'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ddollar/nerdcommenter'
