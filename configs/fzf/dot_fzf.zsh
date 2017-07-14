@@ -1,17 +1,17 @@
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */Users/ajh/.fzf/bin* ]]; then
-  export PATH="$PATH:/Users/ajh/.fzf/bin"
+if [[ ! "$PATH" == *$HOME/.fzf/bin* ]]; then
+  export PATH="$PATH:$HOME/.fzf/bin"
 fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/Users/ajh/.fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.zsh" 2> /dev/null
 
 # Key bindings
 # ------------
-if [ -f "/Users/ajh/.fzf/shell/key-bindings.zsh" ]; then
-  source "/Users/ajh/.fzf/shell/key-bindings.zsh"
+if [ -f "$HOME/.fzf/shell/key-bindings.zsh" ]; then
+  source "$HOME/.fzf/shell/key-bindings.zsh"
 fi
 
 function cdfzf() {
