@@ -22,7 +22,7 @@ function cdfzf() {
     starting_paths=$argv
   fi
 
-  chosen_path=$(find $starting_paths -type d -not -path '*/\.*' | fzf --height=20% --border --color)
+  chosen_path=$(find ${=starting_paths} -type d -not -path '*/\.*' | fzf --height=20% --color)
 
   if [ $? -eq 0 ]; then
     cd $chosen_path
