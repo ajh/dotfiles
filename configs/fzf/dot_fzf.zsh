@@ -10,7 +10,9 @@ fi
 
 # Key bindings
 # ------------
-source "/Users/ajh/.fzf/shell/key-bindings.zsh"
+if [ -f "/Users/ajh/.fzf/shell/key-bindings.zsh" ]; then
+  source "/Users/ajh/.fzf/shell/key-bindings.zsh"
+fi
 
 function cdfzf() {
   # if no args, use '.'
