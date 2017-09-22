@@ -59,6 +59,9 @@ USAGE
 }
 
 # fzf to cd into items on the dirstack
+#
+# Note: this could almost be an alias execpt passing they --query flag would be
+# tedious.
 # ------------------------------------
 function cdr() {
   # if no args, use '.'
