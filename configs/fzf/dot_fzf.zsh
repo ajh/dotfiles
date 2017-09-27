@@ -88,7 +88,7 @@ USAGE
     fzf_args="--query=$1"
   fi
 
-  choice=$(cat $DIRSTACKFILE | fzf $fzf_args)
+  choice=$(cat $MY_DIRSTACK_FILE | fzf $fzf_args)
 
   if [ $? -eq 0 ]; then
     cd $choice
